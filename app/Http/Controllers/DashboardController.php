@@ -30,14 +30,14 @@ class DashboardController extends Controller
         if($delete){
             return back()->with('message','Video Delete');
         }else{
-              
+
             return back()->with('message','Something Went Wrong');
         }
     }
 
 
     public function showUsers(){
-    
+
        $user = User::where('user.followers')->first();
        return view('dashboard.user');
 
@@ -46,15 +46,15 @@ class DashboardController extends Controller
     public function profile($id){
 
         $profile = User::with('videos')->with('followers','following')->where('id',$id)->first();
-       
+
         $videos = $profile->videos->count();
         $followers = $profile->followers->count();
         $following = $profile->following->count();
         return view('dashboard.profile',compact('profile','videos','followers','following'));
     }
 
-    public function videos(){
-        $videos = Video::where('status','approved')->with('user')->get();
+    public function  videos(){
+        $videos = Video::where('status','approved')->with('user')->paginate(8);
         return view('dashboard.videos',compact('videos'));
     }
 
@@ -94,7 +94,7 @@ class DashboardController extends Controller
 
         $user = User::where('id',$id)->with('profile','followers','videos')->first();
         return view('dashboard.user',compact('user'));
-     
+
 
     }
 
@@ -103,7 +103,7 @@ class DashboardController extends Controller
 
         $id = Auth::user()->id;
         $images = ImageUpload::where('user_id',$id)->get();
-       
+
 
         return view('dashboard.user.image-upload',compact('images'));
     }
@@ -114,7 +114,7 @@ class DashboardController extends Controller
         $image = $request->file('file');
         $imageName = $image->getClientOriginalName();
         $image->move(public_path('images'),$imageName);
-        
+
         $imageUpload = new ImageUpload();
         $imageUpload->filename = $imageName;
         $imageUpload->user_id = Auth::user()->id;
@@ -125,16 +125,16 @@ class DashboardController extends Controller
     public function fileDestroy(Request $request)
     {
         $filename =  $request->get('filename');
-        
+
         ImageUpload::where('filename',$filename)->delete();
         $path=public_path().'/images/'.$filename;
         if (file_exists($path)) {
             unlink($path);
         }
-        return $filename;  
+        return $filename;
     }
 
-    
+
 
 
 }

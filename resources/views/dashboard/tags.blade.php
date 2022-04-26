@@ -1,16 +1,33 @@
 @extends('layouts.dashboard.app')
 @section('content')
 <div class="col-md-12">
-<hr>  
-    @foreach($tags as $tag)
-   @php 
-   $data = json_decode($tag);
-   $taglist = implode(',',$data);
-  
+<hr>
+    <table id="exampleTable" class="table table-bordered" style="width:100%">
+        <thead>
+        <tr>
+            <th>#Tags</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($tags as $tag)
+            @php
+                $data = json_decode($tag);
+                $taglist = implode(',',$data);
+            @endphp
 
-    @endphp 
-        <a href="" class="btn btn-primary border-none" style="margin-bottom:10px">{{$taglist}}</a>&nbsp&nbsp
-    @endforeach
-<hr>                   
+            <tr>
+                <td>{{$taglist}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+<hr>
 </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#exampleTable').DataTable();
+        });
+    </script>
 @endsection
