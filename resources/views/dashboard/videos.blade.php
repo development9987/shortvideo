@@ -32,7 +32,11 @@
 
 
                   </div>
-                    {!! $videos->links() !!}
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            {!! $videos->links() !!}
+                        </div>
+                    </div>
 {{--                  <nav aria-label="Page navigation example">--}}
 {{--                     <ul class="pagination justify-content-center pagination-sm mb-0">--}}
 {{--                        <li class="page-item disabled">--}}
