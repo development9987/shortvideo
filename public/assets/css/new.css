@@ -1,0 +1,201 @@
+
+
+.tt-right{
+    text-align: right;
+}
+
+
+.desk-non {
+    display: none;
+}
+
+@media (max-width: 560px){
+	.mbd-none{
+	   display:none;
+	}
+
+.desk-non {
+    display: block;
+}
+
+
+.tt-right{
+    text-align: left;
+}
+
+
+.video-card {
+    height: 240px;
+    width: 165px;
+}
+.video-card-image img {
+    width: 100%;
+    height: 240px !important;
+}
+.revrs{
+	flex-direction: column-reverse;
+}
+
+.video-hastags a{
+	font-size: 10px;
+	    padding: 3px;
+}
+.video-card-body {
+    padding: 6px;
+}
+
+
+.fancybox-slide{
+	width: 215% !important;
+	    left: -57% !important;
+}
+
+
+#wrapper #content-wrapper .container-fluid{
+	padding-left: 20px;
+    padding-right: 20px !important;
+}
+
+footer.sticky-footer {
+    margin-left: 0;
+}
+
+}
+
+
+
+/******Mobile Nav******/
+
+
+
+header {
+  background: #000;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  position: fixed;
+  z-index: 1;
+}
+
+.row.mynavs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row.mynavs p {
+	margin-bottom: 0;
+}
+
+/* Toggle Button */
+.toggle-btnz {
+  width: 30px;
+  height: 50px;
+  padding: 10px 0;
+  top: 0;
+  left: 0;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.toggle-btnz span, .toggle-btnz span:before, .toggle-btnz span:after {
+  width: 30px;
+  height: 2px;
+  background: white;
+  position: absolute;
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.toggle-btnz span {
+  top: 50%;
+}
+
+.toggle-btnz span:before {
+  content: "";
+  top: -10px;
+}
+
+.toggle-btnz span:after {
+  content: "";
+  top: 10px;
+}
+
+.toggle-btnz.onclick span {
+  background: none;
+}
+
+.toggle-btnz.onclick span:before {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.toggle-btnz.onclick span:after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.navz-container {
+  pointer-event: none;
+  
+}
+
+.navz-bar {
+  max-width: 300px;
+  background: #000;
+  margin-left: -300px;
+  transition: margin 0.3s ease-in-out;
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+}
+
+.navz-bar.visible {
+  margin-left: 0;
+
+  height: 100vh;
+}
+
+
+.nav-body {
+    padding: 20px 0;
+}
+
+.nav-body ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.nav-body ul li {
+    padding: 10px 0;
+}
+
+
+.nav-body i {
+    padding-right: 22px;
+}
+
+.nav-body a {
+    color: #fff;
+}
+
+.btn-lgn {
+    background: linear-gradient(135deg, #ff253a 0%,#ff8453 100%);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 35px;
+}
+
+.profl {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.video-user {
+    margin-right: 10px;
+}
+.video-user img {
+    border-radius: 50px;
+    height: 40px;
+    margin: -9px 2px -6px 0;
+    width: 40px;
+}
