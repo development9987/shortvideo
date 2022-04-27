@@ -65,7 +65,7 @@ class DashboardController extends Controller
     }
 
     public function users(){
-        $users = User::with('followers','profile')->where('role','user')->get();
+        $users = User::with('followers','profile')->where('role','user')->paginate(8);
         return view('dashboard.users',compact('users'));
     }
 

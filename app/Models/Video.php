@@ -12,10 +12,10 @@ class Video extends Model
 {
     use HasFactory;
     use SoftDeletes;
-   
-    
+
     protected $guarded = [];
 
+    protected $fillable = ['views'];
 
 
     public function user(){
@@ -33,7 +33,4 @@ class Video extends Model
         return $this->hasMany(Category::class);
     }
 
-    
-
-  
 }

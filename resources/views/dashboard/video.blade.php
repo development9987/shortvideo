@@ -10,11 +10,11 @@
                            </div>
                            <div class="single-video-title box mb-3">
                               <h2><a href="#">{{$video->title}}.</a></h2>
-                              <p class="mb-0"><i class="fas fa-eye"></i> 2,729,347 views</p>
+                              <p class="mb-0"><i class="fas fa-eye"></i> {{$video->views}} views</p>
                            </div>
                            <div class="single-video-author box mb-3">
                              <div class="float-right">
-                                 <button class="btn btn-danger" type="button">Delete <strong></strong></button> 
+                                 <button class="btn btn-danger" type="button">Delete <strong></strong></button>
                              <!-- <button class="btn btn btn-outline-danger" type="button"><i class="fas fa-bell"></i></button> -->
                             </div>
                               <!-- <img class="img-fluid" src="img/s4.png" alt="">
@@ -37,7 +37,7 @@
                            </div>
                         </div>
                      </div>
-              
+
                   </div>
                </div>
             </div>

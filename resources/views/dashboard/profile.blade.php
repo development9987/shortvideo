@@ -2,8 +2,14 @@
 @section('content')
 <div id="content-wrapper">
             <div class="container-fluid pb-0">
-            <h4>{{$profile->name}}</h4><hr>
-               <div class="row">
+                <div class="row">
+                    <div class="col-lg-12 text-center pt-3">
+                    <img alt="Avatar" style="border-radius:50%; width: 7%" class="mt-2 mb-2" src="{{asset('storage'.$profile->profile->image)}}">
+                    <h4>{{$profile->name}}</h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
                  @if ($profile->role == 'admin')
                  <div class="col-xl-3 col-sm-6 mb-3">
                      <div class="card text-white bg-primary o-hidden h-100 border-none">
@@ -69,7 +75,7 @@
                         </a>
                      </div>
                   </div>
-                    
+
                  @else
                  <div class="col-xl-3 col-sm-6 mb-3">
                      <div class="card text-white bg-primary o-hidden h-100 border-none">
@@ -102,7 +108,7 @@
                         </span>
                         </a>
                      </div>
-                  </div> 
+                  </div>
                   <div class="col-xl-3 col-sm-6 mb-3">
                      <div class="card text-white bg-warning o-hidden h-100 border-none">
                         <div class="card-body">
@@ -118,13 +124,13 @@
                         </span>
                         </a>
                      </div>
-                  </div> 
-                 @endif 
-                  
-               
+                  </div>
+                 @endif
+
+
                </div>
                <hr>
-       
+
                <div class="video-block section-padding">
                   <div class="row">
                      <div class="col-md-12">
@@ -144,7 +150,7 @@
                               <a type="button" class="btn btn-danger" data-id="{{$profile->id}}" id="followBtn">
                                  {{App\Models\Follower::follow_status($profile->id)}}
                               </a>
-                          
+
                               @endif
                               @endif
                            </div>
@@ -153,17 +159,17 @@
                            @endif
                         </div>
                      </div>
-                     <div class="video-block section-padding"> 
+                     <div class="video-block section-padding">
                         <!-- Video section start-->
                         <div class="video-block section-padding">
-                 
+
                </div>
              @if ($profile->role != 'admin')
              <div class="row revrs">
                 <div class="col-md-12">
                    <div class="row ">
-              
-               
+
+
                            @forelse ($profile->videos as $data)
                            <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
                               <div class="video-card" >
@@ -184,28 +190,28 @@
                                        <i class="fas fa-edit"></i> </a>
                                        <a href="#" class="">
                                        <i class="fas fa-trash"></i></a> -->
-                                  
+
                                     </div>
                                  </div>
                               </div>
                               <!-- video starts -->
                               <div class="video" id="video-card-{{$data->id}}" style="display: none;">
                                  <video class="video__player" src="{{asset('storage'.$data->video_url)}}"></video>
-                        
+
                                  <!-- sidebar -->
                                  <div class="videoSidebar">
                                  <div class="videoSidebar__button">
                                     <span class="material-icons">favorite_border</span>
                                     <p>12</p>
                                  </div>
-                        
+
                                  <div class="videoSidebar__button">
                                     <span class="material-icons"> message </span>
                                     <p>23</p>
                                  </div>
-      
+
                                  </div>
-                        
+
                                  <!-- footer -->
                                  <div class="videoFooter">
                                  <div class="videoFooter__text">
@@ -226,18 +232,18 @@
                               <h5>No Video Uploaded</h5>
                            </div>
                            @endforelse
-                           
-                          
-                     
-                 
+
+
+
+
                    </div>
                 </div>
-              
+
              </div>
              @else
-      
-               
-             
+
+
+
              <table class="table" id="usertable">
   <thead>
     <tr>
@@ -245,7 +251,7 @@
       <th scope="col">User</th>
       <th scope="col">Number Of Videos</th>
       <th scope="col">Image</th>
-     
+
     </tr>
   </thead>
   <tbody>
@@ -272,30 +278,22 @@
       <th scope="col">User</th>
       <th scope="col">Number Of Videos</th>
       <th scope="col">Image</th>
-  
+
     </tr>
   </tbody>
 </table>
-                      
-                          
-                     
-                 
-              
-              
-           
-                
-             @endif 
-             
+             @endif
+
           </div>
-               
+
                   </div>
                </div>
-              
-             
+
+
                <hr class="mt-0">
-           
+
             </div>
-         
+
          </div>
 @endsection
 @section('script')
@@ -317,7 +315,7 @@ $("#followBtn").on('click',function(){
                 data:{_token: "{{ csrf_token() }}"
                 },
                 success: function( msg ) {
-                   
+
                     $("#followBtn").html(msg);
                 }
             });

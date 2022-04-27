@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 /*
@@ -24,6 +25,9 @@ Auth::routes();
 // Front Route
 Route::get('/',[App\Http\Controllers\Frontend\FrontendController::class,'index'])->name('index');
 
+// For add video views.
+Route::post('add-video-views',[FrontendController::class,'addVideoViews'])->name('addVideoViews');
+
 
 //Dashboard Routes
 Route::prefix('dashboard')->group(function(){
@@ -33,7 +37,7 @@ Route::prefix('dashboard')->group(function(){
 Route::post('/search/video',[App\Http\Controllers\VideoController::class,'searchVideo'])->name('search.video');
 Route::middleware('auth')->group(function(){
     Route::get('/upload',[App\Http\Controllers\VideoController::class,'upload'])->name('upload.video');
-    
+
     Route::post('/upload/video',[App\Http\Controllers\VideoController::class,'upload_video'])->name('store.video');
     Route::post('/update/video/{id}',[App\Http\Controllers\VideoController::class,'updateVideo'])->name('update.video');
     Route::post('/delete/video/{id}',[App\Http\Controllers\VideoController::class,'deleteVideo'])->name('delete.video');
@@ -55,10 +59,10 @@ Route::middleware('auth')->group(function(){
     Route::get('create/gallery',[App\Http\Controllers\DashboardController::class,'createGallery'])->name('create.gallery');
     Route::post('upload/gallery',[App\Http\Controllers\DashboardController::class,'uploadGallery'])->name('upload.gallery');
     Route::post('image/delete',[App\Http\Controllers\DashboardController::class,'fileDestroy'])->name('remove.image');
-   
+
 });
 Route::prefix('admin')->middleware('auth')->group(function(){
-    
+
     Route::get('/videos',[App\Http\Controllers\DashboardController::class,'videos'])->name('admin.videos');
     Route::get('/tags',[App\Http\Controllers\DashboardController::class,'tags'])->name('admin.tags');
     Route::get('/users',[App\Http\Controllers\DashboardController::class,'users'])->name('admin.users');
@@ -68,11 +72,11 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     Route::get('/single/video/{id}',[App\Http\Controllers\DashboardController::class,'single_video'])->name('single.video');
     Route::get('/show/user/{id}',[App\Http\Controllers\DashboardController::class,'show_user'])->name('show.user');
     Route::get('/delete/user/{id}',[App\Http\Controllers\DashboardController::class,'delete_user'])->name('delete.user');
-    
+
     Route::get('/upload/request',[App\Http\Controllers\VideoController::class,'upload_request'])->name('upload.request');
     Route::get('/reject/{id}',[App\Http\Controllers\VideoController::class,'reject_video'])->name('reject.video');
     Route::get('/approve/{id}',[App\Http\Controllers\VideoController::class,'approve_video'])->name('approve.video');
- 
+
 });
 Route::get('/video/{tag}',[App\Http\Controllers\VideoController::class,'tags_videos'])->name('tag.video');
 Route::get('profile/{id}',[App\Http\Controllers\DashboardController::class,'profile'])->name('user.profile');
