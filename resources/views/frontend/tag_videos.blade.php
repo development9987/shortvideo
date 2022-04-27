@@ -255,7 +255,7 @@ $.ajax(
      })
      .fail(function(jqXHR, ajaxOptions, thrownError)
      {
-           alert('server not responding...');
+         //   alert('server not responding...');
      });
 }
 

@@ -201,7 +201,7 @@
              <div class="row revrs">
                 <div class="col-md-12">
                    <div class="row ">
-              
+        
                
                            @forelse ($profile->videos as $data)
                
@@ -235,17 +235,39 @@
                                  <!-- sidebar -->
                                  <div class="videoSidebar">
                                  <div class="videoSidebar__button">
-                                    <span class="material-icons">favorite_border</span>
-                                    <p>12</p>
+                                    @if (Auth::user())
+                                       <span class="material-icons likeBtn" data-video="{{$data->id}}" data-id="{{$data->user->id}}">{{App\Models\LikedMessage::liked($data->id)}}</span>
+                                    @else
+                                       <span class="material-icons likeBtn" data-video="{{$data->id}}" data-id="{{$data->user->id}}">favorite_border</span>
+                                    @endif
+                                    <p>{{App\Models\LikedMessage::countLike($data->id)}}</p>
                                  </div>
                         
                                  <div class="videoSidebar__button">
                                     <span class="material-icons"> message </span>
-                                    <p>23</p>
+                                    <p>{{App\Models\Comment::countComment($data->id)}}</p>
                                  </div>
       
                                  </div>
-                        
+                                 <div class="videoComments d-none" id="videoComments{{$data->id}}">
+                              <div class="comment-header">
+                                 <span class="comment-heading">Comments</span>
+                                 <span class="float-right close-comment"><i class="fas fa-times"></i></span>
+                              </div>
+                              <div class="comment-section">
+                                 <div class="usercomments">
+                                 <div class="usercomments">
+                                 <div class="row">
+                                  
+                                 <input type="text" class="comment-input" id="comment{{$data->id}}" >
+                                    <button class="btn btn-primary comment comment-btn" data-id="{{$data->id}}" type="button"><i class="far fa-comment-dots"></i></button>
+                                 </div>
+                               
+                                 </div>
+                                 </div>
+                            
+                              </div>
+                           </div>
                                  <!-- footer -->
                                  <div class="videoFooter">
                                  <div class="videoFooter__text">
@@ -308,6 +330,16 @@
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
+});
+
+
+$(".videcomment-btn").click(function(){
+
+var id = $(this).data('id');
+$("#videoComments"+id).toggleClass('d-none');
+});
+$(".close-comment").click(function(){
+$(".videoComments").addClass('d-none');
 });
 
 $("#followBtn").on('click',function(){

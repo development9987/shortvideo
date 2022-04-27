@@ -179,7 +179,14 @@ display:block;
                                     <a class="play-icon" href="#video-card-{{$video->id}}" id="desk-play-icon" data-fancybox="group"><i class="fas fa-play-circle"></i></a>
                                     <a class="play-icon" href="{{route('mobile.view', $video->id)}}" id="mobile-play-icon"><i class="fas fa-play-circle"></i></a>
                                    
-                                    <a href="#" ><img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt=""></a>
+                                    <a href="#" >
+                                       @if (!empty($video->thumbnail))
+                                       <img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt=""> 
+                                       @else
+                                       <img class="img-fluid" src="{{asset('assets/img/404.png')}}" alt="">
+                                       @endif
+                                       
+                                    </a>
                                  </div>
                                  <div class="video-card-body">
                                     <div class="video-title">
@@ -210,7 +217,12 @@ display:block;
                               </div>
                               <!-- video starts -->
                               <div class="video" id="video-card-{{$video->id}}" style="display: none;">
-                                 <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
+                              @if (!empty($video->video_url))
+                              <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
+                              @else
+                              <video class="video__player" src="{{asset('assets/img/screenshot.png')}}"></video> 
+                              @endif
+                                 
                                  <!-- sidebar -->
                                  <div class="videoSidebar">
                                  <div class="videoSidebar__button" >
@@ -237,7 +249,7 @@ display:block;
                                  <div class="row">
                                   
                                  <input type="text" class="comment-input" id="comment{{$video->id}}" >
-                                    <button class="btn btn-primary comment comment-btn" data-id="{{$video->id}}" type="button"><i class="far fa-comment-dots"></i></button>
+                                 <button class="btn btn-primary comment comment-btn" data-id="{{$video->id}}" type="button"><i class="far fa-comment-dots"></i></button>
       
                                  </div>
                                
@@ -354,7 +366,7 @@ display:block;
                                  <div class="profl"> 
                                     <div class="">
                                        <a href="{{route('user.profile',$user->id)}}" class="video-user">
-                                          @if(empty($user->profile))
+                                          @if(empty($user->profile->image))
                                           <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
                                           @else
                                           <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
@@ -372,18 +384,13 @@ display:block;
                                     </div>
                                  </div>
                               </div>
-                      
                               @endforeach
                             
                            </div>
                         </div>
                      </div>
-                     <div class="video-block mbd-none section-padding">
-                  
+                     <div class="video-block mbd-none section-padding"> 
                </div>
-           
-         
-      
 @endsection
 @section('scripts')
    <script>
@@ -507,7 +514,7 @@ $(".likeBtn").on('click',function(){
 	        })
 	        .fail(function(jqXHR, ajaxOptions, thrownError)
 	        {
-	              alert('server not responding...');
+	            //   alert('server not responding...');
 	        });
 	}
 </script>

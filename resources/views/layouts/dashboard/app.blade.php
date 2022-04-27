@@ -17,16 +17,17 @@
       <!-- Custom fonts for this template-->
       <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
       <!-- Custom styles for this template-->
-      @if (Auth::user())
+   @if (Auth::user())
       @if (Auth::user()->theme == 'dark')
         <link href="{{asset('assets/css/osahan.css')}}" rel="stylesheet">
       @else 
         <link href="{{asset('assets/css/dark.css')}}" rel="stylesheet">
       @endif
-    @else
+   @else
       <link href="{{asset('assets/css/osahan.css')}}" rel="stylesheet">
-    @endif
+   @endif
       <link href="{{asset('assets/css/select2.css')}}" rel="stylesheet">
+      <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
       <!-- Owl Carousel -->
       <link rel="stylesheet" href="{{asset('assets/vendor/owl-carousel/owl.carousel.css')}}">
       <link rel="stylesheet" href="{{asset('assets/vendor/owl-carousel/owl.theme.css')}}">
@@ -35,7 +36,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <style>
 .switch {
   position: relative;
@@ -97,6 +98,64 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+.videoComments{
+    width: 100%;
+    height: 220px;
+    position: absolute;
+    background: #fff;
+    bottom: 0px;
+    z-index: 3;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.comment-header {
+  padding: 15px;
+}
+.comment-section {
+  padding: 2px 15px 2px 15px;
+  overflow-y: scroll;
+  height: 65%;
+}
+.comment-section::-webkit-scrollbar {
+  display: none;
+}
+.comment-section a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+.comment p {
+  font-size: 15px;
+}
+.comment-timestamp p {
+  margin-top: -15px;
+  font-size: 10px;
+}
+.comment-input {
+    width: 75%;
+    background: #efefef;
+    border-top: 1px solid #bfbfbf !important;
+    border-bottom: 1px solid #bfbfbf !important;
+    border-left: 1px solid #bfbfbf !important;
+    border-right: 0px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-right: -1px;
+    padding: 8px;
+}
+
+.comment-btn {
+    width: 10%;
+    background: #efefef;
+    color: #ff0000;
+    padding: 4px 4px 4px 4px;
+    border-top: 1px solid #bfbfbf !important;
+    border-bottom: 1px solid #bfbfbf !important;
+    border-right: 1px solid #bfbfbf !important;
+    border-left: 1px solid #bfbfbf !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
       </style>
    </head>
@@ -271,6 +330,7 @@ input:checked + .slider:before {
     
          
             $(document).ready(function(){
+               
                $("#usertable").DataTable();
             var APP_URL = {!! json_encode(url('/')) !!}
             $("#mode").on('change',function(){
