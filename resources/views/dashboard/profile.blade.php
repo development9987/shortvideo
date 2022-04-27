@@ -14,10 +14,10 @@
                            <div class="mr-5"><b>{{$videos_count}}</b>Videos</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                        <!-- <span class="float-left">View Details</span> -->
+                        <!-- <span class="float-right">
                         <i class="fas fa-angle-right"></i>
-                        </span>
+                        </span> -->
                         </a>
                      </div>
                   </div>
@@ -30,10 +30,10 @@
                            <div class="mr-5"><b>{{$users_count}}</b>Users</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                        <!-- <span class="float-left">View Details</span> -->
+                        <!-- <span class="float-right">
                         <i class="fas fa-angle-right"></i>
-                        </span>
+                        </span> -->
                         </a>
                      </div>
                   </div>
@@ -46,10 +46,10 @@
                            <div class="mr-5"><b>{{$pendding_videos}}</b>Pending Videos</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                        <!-- <span class="float-left">View Details</span> -->
+                        <!-- <span class="float-right">
                         <i class="fas fa-angle-right"></i>
-                        </span>
+                        </span> -->
                         </a>
                      </div>
                   </div>
@@ -62,10 +62,10 @@
                            <div class="mr-5"><b>{{$approved_videos}}</b>Approved Videos</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                        <!-- <span class="float-left">View Details</span> -->
+                        <!-- <span class="float-right">
                         <i class="fas fa-angle-right"></i>
-                        </span>
+                        </span> -->
                         </a>
                      </div>
                   </div>
@@ -80,10 +80,10 @@
                            <div class="mr-5"><b>{{$videos}}</b>Videos</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
-                        <span class="float-left">View Details</span>
-                        <span class="float-right">
+                        <!-- <span class="float-left">View Details</span> -->
+                        <!-- <span class="float-right">
                         <i class="fas fa-angle-right"></i>
-                        </span>
+                        </span> -->
                         </a>
                      </div>
                   </div>
@@ -152,8 +152,45 @@
                            <h6>My Videos</h6>
                            @endif
                         </div>
+                        <table class="table " id="usertable">
+  <thead>
+    <tr>
+    <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Number Of Videos</th>
+      <th scope="col">Number Of Followers</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+     @forelse ($users as $user)
+     <tr>
+      <th scope="row">1</th>
+      <td>{{$user->name}}</td>
+      <td>{{count($user->videos)}}</td>
+      <td>{{count($user->followers)}}</td>
+</tr>
+     @empty
+        
+          <tr>
+             <td>No User Found</td>
+          </tr>   
+     @endforelse
+
+
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Number Of Videos</th>
+      <th scope="col">Number Of Followers</th>
+  
+    </tr>
+  </tbody>
+</table>
                      </div>
+
                      <div class="video-block section-padding"> 
+
                         <!-- Video section start-->
                         <div class="video-block section-padding">
                  
@@ -238,44 +275,7 @@
       
                
              
-             <table class="table" id="usertable">
-  <thead>
-    <tr>
-    <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Number Of Videos</th>
-      <th scope="col">Image</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Number Of Videos</th>
-      <th scope="col">Image</th>
-  
-    </tr>
-  </tbody>
-</table>
+
                       
                           
                      

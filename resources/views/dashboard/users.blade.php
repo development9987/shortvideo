@@ -20,7 +20,7 @@
                         <div class="channels-card">
                            <div class="channels-card-image">
                            @if(empty($user->profile))
-                                          <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
+                                 <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
                            @else
                                           <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
                            @endif

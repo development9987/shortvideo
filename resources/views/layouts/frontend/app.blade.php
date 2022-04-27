@@ -24,7 +24,7 @@
                         <p>[LOGO HERE]</p>
                      </div>
                      <div class="col-6">
-                         <div class="dropdown">
+                         <!-- <div class="dropdown">
                                     <button style="background: linear-gradient(135deg, #2b2c2c 10%,#060505 100%);" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                        <i class="fas fa-heart fa-fw"></i>
                                        HTML
@@ -34,20 +34,31 @@
                                       <a class="dropdown-item" href="#">Dolor</a>
                                       <a class="dropdown-item" href="#">Amet</a>
                                     </div>
-                                  </div>
+                                  </div> -->
                      </div>
                   </div>
                </div>
                <div class="nav-body">
                   <ul> 
-                     <li> <a href="#"> <i class="fas fa-fw fa-search"></i> Search </a></li>
-                     <li> <a href="#"> <i class="fas fa-fw fa-list"></i> Categories </a></li>
-                     <li> <a href="#"> <i class="fas fa-fw fa-hashtag"></i> Discover </a></li>
-                     <li> <a href="#"> <i class="fas fa-fw fa-plus-circle"></i> Upload Video </a></li>
+                     <li> <i class="fas fa-fw fa-search" id='toggle-search'></i> Search </li>
+                     <input style='display:none;' id='searchBar' name='search' type='search' placeholder='Search&hellip;'>
+                     <!-- <li><span><input class="form-control" name="search" ><i class="fas fa-search"></i></span></li> -->
+                     <!-- <li> <a href=""> <i class="fas fa-fw fa-list"></i> Categories </a></li>
+                     <li> <a href="#"> <i class="fas fa-fw fa-hashtag"></i> Discover </a></li> -->
+                     <li> <a href="{{route('upload.video')}}"> <i class="fas fa-fw fa-plus-circle"></i> Upload Video </a></li>
                   </ul>
 
                   <div class="btn-lgn">
-                     <a href="#"> <i class="fas fa-fw fa-user"></i> Login / Sign up </a>
+                  @guest
+            @if (Route::has('login'))
+            <li class="nav-item active">
+               <a href="{{ route('login') }}"> <i class="fas fa-fw fa-user"></i> {{ __('Login') }}   </a>
+            </li>
+            @endif
+            @else
+            {{ Auth::user()->name }}
+            @endguest
+                  
                   </div>
                </div>
             </div>
@@ -362,7 +373,10 @@
          // }
          $(document).ready(function(){
 
-            
+            // Search Bar & Toggle
+$('#toggle-search').on('click', function() {
+  $('#searchBar').toggle('display: inline-block');
+});
          
             var APP_URL = {!! json_encode(url('/')) !!}
             $("#mode").on('change',function(){

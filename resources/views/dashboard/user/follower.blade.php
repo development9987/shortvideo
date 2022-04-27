@@ -16,12 +16,19 @@
                      <div class="col-xl-3 col-sm-6 mb-3">
                         <div class="channels-card">
                            <div class="channels-card-image">
-                              <a href="#"><img class="img-fluid" src="{{asset('storage'.$follower->image)}}" alt=""></a>
+
+                              
+               @if(!empty($follower->image))
+                  <a href="#"><img class="img-fluid" src="{{asset('storage'.$follower->image)}}" alt=""></a>
+              @else
+               <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
+              @endif
                               <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div> -->
                            </div>
                            <div class="channels-card-body">
                               <div class="channels-title">
                                  <a href="{{route('user.profile',$follower->follow)}}">{{$follower->name}}</a>
+                                 
                               </div>
                               <!-- <div class="channels-view">
                                  

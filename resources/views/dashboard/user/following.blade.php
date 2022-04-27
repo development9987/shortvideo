@@ -16,7 +16,12 @@
                      <div class="col-xl-3 col-sm-6 mb-3">
                         <div class="channels-card">
                            <div class="channels-card-image">
+                              
+                              @if(!empty($following->image))
                               <a href="#"><img class="img-fluid" src="{{asset('storage'.$following->image)}}" alt=""></a>
+              @else
+               <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
+              @endif
                               <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div> -->
                            </div>
                            <div class="channels-card-body">

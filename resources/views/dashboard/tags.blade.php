@@ -9,16 +9,15 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($tags as $tag)
-            @php
-                $data = json_decode($tag);
-                $taglist = implode(',',$data);
-            @endphp
-
+ 
+        @foreach($videotags as $key => $videotag) 
+            @foreach ($videotag as $tag)
             <tr>
-                <td>{{$taglist}}</td>
+                <td> <a href="{{route('tag.video',preg_replace('/[^a-zA-Z0-9_ %\.\(\)%&-]/s', '', $tag))}}" class="tag" style="background: {{sprintf("#%06x",rand(0,16777215))}}" >#{{ preg_replace('/[^a-zA-Z0-9_ %\.\(\)%&-]/s', '', $tag) }}</a></td>
             </tr>
-        @endforeach
+              
+            @endforeach
+        @endforeach 
         </tbody>
     </table>
 <hr>

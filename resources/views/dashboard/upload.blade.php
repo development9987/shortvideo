@@ -4,24 +4,24 @@
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="main-title">
-                           <h6>Upload Details</h6>
+                           <h6>Upload Video</h6>
                         </div>
                      </div>
                      <div class="col-lg-2">
-                        <div class="imgplace"></div>
+                        <!-- <div class="imgplace"></div> -->
                      </div>
                      <div class="col-lg-10">
-                        <div class="osahan-title">Contrary to popular belief, Lorem Ipsum (2019) is not.</div>
-                        <div class="osahan-size">102.6 MB . 2:13 MIN Remaining</div>
+                        <!-- <div class="osahan-title">Contrary to popular belief, Lorem Ipsum (2019) is not.</div>
+                        <div class="osahan-size">102.6 MB . 2:13 MIN Remaining</div> -->
                         <div class="osahan-progress">
-                           <div class="progress">
+                           <!-- <div class="progress">
                               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"   aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                           </div>
-                           <div class="osahan-close">
+                           </div> -->
+                           <!-- <div class="osahan-close">
                               <a href="#"><i class="fas fa-times-circle"></i></a>
-                           </div>
+                           </div> -->
                         </div>
-                        <div class="osahan-desc">Your Video is still uploading, please keep this page open until it's done.</div>
+                        <!-- <div class="osahan-desc">Your Video is still uploading, please keep this page open until it's done.</div> -->
                      </div>
                   </div>
                   <hr>
@@ -110,7 +110,7 @@
                            <div class="row">
                               <div class="col-lg-12">
                                  <div class="form-group">
-                                    <label for="e7">Tags (13 Tags Remaining)</label>
+                                    <label for="e7">Tags</label>
                                     <select class="form-control" id="tags" name="tags[]" multiple>
                                         
                                     </select>

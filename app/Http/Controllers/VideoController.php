@@ -20,9 +20,7 @@ use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 class VideoController extends Controller
 {
     public function upload(){
-        
         return view('dashboard.upload');
-
     }
     
 
@@ -168,7 +166,15 @@ class VideoController extends Controller
 
       $str = $request->str;
       $videos = Video::with('user.followers')->where('title', 'like', "%{$str}%")->orWhere('description','like',"%{$str}%")->orWhere('tags', 'like', "%{$str}%")->get();
-      return view('frontend.video.search',compact('videos'));
+   
+      // return view('frontend.video.search',compact('videos'));
+
+      $tags = Video::pluck('tags')->take(10)->toArray();
+      foreach($tags as $key => $tag){
+        $videotags[$key] = (explode(" ",$tag));
+
+      }
+      return view('frontend.index',compact('videos','tags','videotags'));
 
     }
 
