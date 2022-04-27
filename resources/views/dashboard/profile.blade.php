@@ -152,6 +152,7 @@
                            <h6>My Videos</h6>
                            @endif
                         </div>
+                        @if ($profile->role == 'admin')
                         <table class="table " id="usertable">
   <thead>
     <tr>
@@ -187,6 +188,7 @@
     </tr>
   </tbody>
 </table>
+@endif
                      </div>
 
                      <div class="video-block section-padding"> 
