@@ -204,6 +204,7 @@
               
                
                            @forelse ($profile->videos as $data)
+               
                            <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
                               <div class="video-card" >
                                  <div class="video-card-image">
@@ -266,8 +267,6 @@
                            </div>
                            @endforelse
                            
-                          
-                     
                  
                    </div>
                 </div>

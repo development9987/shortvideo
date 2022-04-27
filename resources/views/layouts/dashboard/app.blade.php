@@ -33,6 +33,7 @@
       <link rel="stylesheet" href="{{asset('js/app.js')}}">
       <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   
       <style>
@@ -165,9 +166,9 @@ input:checked + .slider:before {
                      <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
               @endif
               @endif
-          @if(Auth::user())
+         @if(Auth::user())
               {{ Auth::user()->name }}
-            @endif
+         @endif
                </a>
                @if(Auth::user())
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -253,19 +254,20 @@ input:checked + .slider:before {
       <script src="{{asset('assets/js/custom.js')}}"></script>
       <script src="{{asset('assets/js/select2.js')}}"></script>
       <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
       <script>
-         const videos = document.querySelectorAll('video');
+        const videos = document.querySelectorAll('video');
    
-         for (const video of videos) {
-           video.addEventListener('click', function () {
-             console.log('clicked');
-             if (video.paused) {
-               video.play();
-             } else {
-               video.pause();
-             }
-           });
-         }
+   for (const video of videos) {
+     video.addEventListener('click', function () {
+       console.log('clicked');
+       if (video.paused) {
+         video.play();
+       } else {
+         video.pause();
+       }
+     });
+   }
     
          
             $(document).ready(function(){

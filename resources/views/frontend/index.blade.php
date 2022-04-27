@@ -291,7 +291,7 @@ display:block;
                                         
                                     </a>
                                     </div>
-                                    <p class="videoFooter__description">Best Video Ever</p>
+                                    <!-- <p class="videoFooter__description">Best Video Ever</p> -->
                                  </div>
                                  </div>
                               </div>

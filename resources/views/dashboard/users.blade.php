@@ -20,9 +20,9 @@
                         <div class="channels-card">
                            <div class="channels-card-image">
                            @if(empty($user->profile))
-                                 <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
+                              <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
                            @else
-                                          <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
+                              <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
                            @endif
                               <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div> -->
                            </div>
