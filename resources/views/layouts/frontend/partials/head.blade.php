@@ -93,6 +93,23 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#searchBar {
+    background-color: #2f2f2f;
+    border: none;
+    color: rgba(#efefef, .5);
+    font-size: 12pt;
+    font-weight: 100;
+    margin-right: 10px;
+    padding: .25em .75em;
+    float: right;
+    max-width: 130px;
+    text-align: right;
+    -webkit-border-radius: 28px;
+       -moz-border-radius: 28px;
+            border-radius: 28px;
+  }
+
       </style>
       @yield('style')
 </head>

@@ -171,10 +171,8 @@ display:block;
 </div>
              
    <div class="row">
-                 
+      
                            @foreach($videos as $video)
-                       
-                       
                               <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
                               <div class="video-card" >
                                  <div class="video-card-image">
@@ -357,10 +355,11 @@ display:block;
                                     <div class="">
                                        <a href="{{route('user.profile',$user->id)}}" class="video-user">
                                           @if(empty($user->profile))
-                                          <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
+                                          <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
                                           @else
                                           <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
                                           @endif
+
                                        </a>
                                     </div>
                                     <div class="">
