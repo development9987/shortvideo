@@ -181,7 +181,7 @@ display:block;
 
 
                               <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
-                              <div class="video-card" onclick="addVideoViews({{$video->id}})" >
+                              <div class="video-card" >
                                  <div class="video-card-image">
                                     <a class="play-icon" href="#video-card-{{$video->id}}" id="desk-play-icon" data-fancybox="group"><i class="fas fa-play-circle"></i></a>
                                     <a class="play-icon" href="{{route('mobile.view', $video->id)}}" id="mobile-play-icon"><i class="fas fa-play-circle"></i></a>
@@ -431,6 +431,8 @@ $(".videoComments").addClass('d-none');
 $('.comment').on('click',function(){
    var id = $(this).data('id');
    var comment = $("#comment"+id).val();
+
+
    $.ajax({
                 type:'POST',
                 url:'/post/comment',

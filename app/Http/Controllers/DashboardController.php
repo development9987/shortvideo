@@ -46,11 +46,11 @@ class DashboardController extends Controller
     public function profile($id){
 
         $profile = User::with('videos')->with('followers','following')->where('id',$id)->first();
-
+        $users = User::with('videos','followers')->where('role','user')->get();
         $videos = $profile->videos->count();
         $followers = $profile->followers->count();
         $following = $profile->following->count();
-        return view('dashboard.profile',compact('profile','videos','followers','following'));
+        return view('dashboard.profile',compact('profile','videos','followers','following','users'));
     }
 
     public function  videos(){
@@ -60,8 +60,12 @@ class DashboardController extends Controller
 
     public function tags(){
 
-        $tags = Video::where('status','approved')->pluck('tags')->toArray();
-        return view('dashboard.tags',compact('tags'));
+        $tags = Video::where('status','approved')->pluck('tags')->take(10)->toArray();
+        foreach($tags as $key => $tag){
+          $videotags[$key] = (explode(" ",$tag));
+  
+        }
+        return view('dashboard.tags',compact('tags','videotags'));
     }
 
     public function users(){

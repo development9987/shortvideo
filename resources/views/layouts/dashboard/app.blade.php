@@ -162,7 +162,7 @@ input:checked + .slider:before {
                @if(!empty(\App\Models\Profile::profile_image()))
                      <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}"> 
               @else
-                     <img alt="Avatar" src="{{asset('assets/img/user.png')}}"> 
+                     <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
               @endif
               @endif
           @if(Auth::user())

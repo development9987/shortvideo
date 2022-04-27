@@ -1,20 +1,20 @@
 @extends('layouts.dashboard.app')
 @section('content')
-    <div id="content-wrapper">
-        <div class="container-fluid pb-0">
-            <div class="video-block section-padding">
-                <div class="row">
-                    <div class="col-md-12">
+<div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
                         <div class="main-title">
 
-                            <hr>
-                            <h6>Users</h6>
-                            <hr>
+                           <hr>
+                           <h6>Users</h6>
+                           <hr>
                         </div>
-                    </div>
-                    @if (Session::has('message'))
-                        {{Session::get('message')}}
-                    @endif
+                     </div>
+                     @if (Session::has('message'))
+                     {{Session::get('message')}}
+                  @endif
                     @forelse ($users as $user)
                         <div class="col-xl-3 col-sm-6 mb-3">
                             <div class="channels-card">
@@ -46,16 +46,16 @@
                             </div>
                         </div>
                     @empty
-                        <h3>No User Found</h3>
+                         <h3>No User Found</h3>
                     @endforelse
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        {!! $users->links() !!}
-                    </div>
-                </div>
+
+
+                  </div>
+
+               </div>
+               <hr>
+
             </div>
-            <hr>
-        </div>
-    </div>
+
+         </div>
 @endsection
