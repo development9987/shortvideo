@@ -41,7 +41,11 @@
                <div class="nav-body">
                   <ul> 
                      <li> <i class="fas fa-fw fa-search" id='toggle-search'></i> Search </li>
-                     <input style='display:none;' id='searchBar' name='search' type='search' placeholder='Search&hellip;'>
+                     <form action="{{route('search.video')}}" method="post">
+                        @csrf
+                     <input style='display:none;' id='searchBar' type="text" name="str" placeholder='Search&hellip;'>
+                     </form>
+                    
                      <!-- <li><span><input class="form-control" name="search" ><i class="fas fa-search"></i></span></li> -->
                      <!-- <li> <a href=""> <i class="fas fa-fw fa-list"></i> Categories </a></li>
                      <li> <a href="#"> <i class="fas fa-fw fa-hashtag"></i> Discover </a></li> -->
