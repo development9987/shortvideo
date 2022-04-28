@@ -34,6 +34,9 @@ Version: 1.0
 }
  .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
 }
+a:hover, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
  #wrapper {
      display: -webkit-box;
      display: -ms-flexbox;
@@ -797,8 +800,25 @@ footer.sticky-footer {
  .dropdown-divider {
      border-top: 1px solid #eff2f3;
 }
- a:hover, h1, h2, h3, h4, h5, h6 {
+ /* a:hover, h1, h2, h3, h4, h5, h6 {
      color: #333;
+} */
+.select-month-year {
+    background: transparent;
+    color: #000 !important;
+    border: 0px;
+    width: 85px;
+}
+a:hover, h1, h2, h3, h4, h5, h6 {
+    color: #000;
+}
+.video-title a {
+    color: #fff !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+option {
+    color: #080808 !important;
 }
  .upload-video .fas {
      font-size: 200px;
@@ -939,11 +959,7 @@ footer.sticky-footer {
      top: 0;
      transition-duration: 0.4s;
 }
- .video-title a {
-     color: #000;
-     font-weight: 600;
-     text-decoration: none;
-}
+ 
  .video-title {
      margin-bottom: 5px;
 }
@@ -965,11 +981,7 @@ footer.sticky-footer {
 .video-title {
     margin-bottom: 5px;
 }
-.video-title a {
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-}
+
 .video-card-body {
     padding: 12px;
     position: absolute;
