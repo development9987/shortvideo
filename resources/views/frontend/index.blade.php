@@ -124,10 +124,14 @@ display:block;
    color: #fff
 }
 .views-count{
-    padding-left: 50px;
+   margin: 0;
+   text-align: right;
 }
 .video-card-body{
     width: 100%;
+}
+option {
+   color: #fff;
 }
 
 
@@ -185,29 +189,35 @@ display:block;
                                  <div class="video-card-image">
                                     <a class="play-icon" href="#video-card-{{$video->id}}" id="desk-play-icon" data-fancybox="group"><i class="fas fa-play-circle"></i></a>
                                     <a class="play-icon" href="{{route('mobile.view', $video->id)}}" id="mobile-play-icon"><i class="fas fa-play-circle"></i></a>
-                                   
+
                                     <a href="#" >
                                        @if (!empty($video->thumbnail))
-                                       <img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt=""> 
+                                       <img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt="">
                                        @else
                                        <img class="img-fluid" src="{{asset('assets/img/404.png')}}" alt="">
                                        @endif
-                                       
+
                                     </a>
 
                                  </div>
                                  <div class="video-card-body">
                                     <div class="video-title">
-                                       <a href="#" class="video-user">
-                                       @if(empty($video->user->profile))
-                                          <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
-                                       @else
-                                          <img alt="Avatar" src="{{asset('storage'.$video->user->profile->image)}}">
-                                       @endif
-                                         {{ !empty($video->user->name) ? $video->user->name:''}}
+                                        <div class="row">
+                                            <div class="col-lg-6 pt-2 video-top-head-left">
+                                                <a href="#" class="video-user">
+                                                    @if(empty($video->user->profile))
+                                                        <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
+                                                    @else
+                                                        <img alt="Avatar" src="{{asset('storage'.$video->user->profile->image)}}">
+                                                    @endif
+                                                    {{ !empty($video->user->name) ? $video->user->name:''}}
 
-                                       </a>
-                                        <span class="text-white views-count">{{$video->views}} Views</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-6 pt-2">
+                                                <p class="text-white views-count">{{$video->views}} Views</p>
+                                            </div>
+                                        </div>
                                     </div>
                                  </div>
 
@@ -229,9 +239,9 @@ display:block;
                               @if (!empty($video->video_url))
                               <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
                               @else
-                              <video class="video__player" src="{{asset('assets/img/screenshot.png')}}"></video> 
+                              <video class="video__player" src="{{asset('assets/img/screenshot.png')}}"></video>
                               @endif
-                                 
+
                                  <!-- sidebar -->
                                  <div class="videoSidebar">
                                  <div class="videoSidebar__button" >
@@ -258,9 +268,9 @@ display:block;
                                  <div class="row">
 
                                  <input type="text" class="comment-input" id="comment{{$video->id}}" >
-                                 
+
                                  <button class="btn btn-primary comment comment-btn" data-id="{{$video->id}}" type="button"><i class="far fa-comment-dots"></i></button>
-      
+
 
                                  </div>
 
@@ -401,7 +411,7 @@ display:block;
                         </div>
                      </div>
 
-                     <div class="video-block mbd-none section-padding"> 
+                     <div class="video-block mbd-none section-padding">
                </div>
 
 @endsection

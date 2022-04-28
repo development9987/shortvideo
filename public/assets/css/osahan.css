@@ -5,7 +5,7 @@ Author URI: https://themeforest.net/user/askbootstrap
 Version: 1.0
 */
 /*
-	-- Body 
+	-- Body
 	-- Nav
 	-- Sidebar
 	-- Customize Bootstrap
@@ -50,10 +50,10 @@ Version: 1.0
      padding: 30px 30px 30px 121px;
 }
 .single-channel-page{
-    padding: 0px 0px 0px 225px;   
+    padding: 0px 0px 0px 225px;
 }
 .sidebar-toggled .single-channel-page{
-    padding: 0px 0px 0px 90px;   
+    padding: 0px 0px 0px 90px;
 }
 .single-channel-page .container-fluid {
     padding: 30px 30px 30px !important;
@@ -405,9 +405,9 @@ Version: 1.0
     .osahan-nav {
         border-bottom: 0.1px solid #676464;
         padding: 0;
-        
+
     }
- 
+
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
     color: #fff;
 }
@@ -921,6 +921,7 @@ Version: 1.0
  .video-card-body {
      padding: 12px;
      position: absolute;
+     width: 100%;
 }
  .video-card-list .video-card-image {
      float: left;
@@ -1657,20 +1658,21 @@ Version: 1.0
     padding: 4px;
     border-radius: 3px;
     margin-right: 2px;
+    line-height: 32px;
 }
 
-/* hashtags listing css */  
+/* hashtags listing css */
   .tags {
     list-style: none;
     margin: 0;
-    overflow: hidden; 
+    overflow: hidden;
     padding: 0;
   }
-  
+
   .tags li {
-    float: left; 
+    float: left;
   }
-  
+
   .tag {
     background: linear-gradient(135deg, #ff253a 0%,#ff8453 100%);
     border-radius: 3px 3px 3px 3px;
@@ -1684,15 +1686,15 @@ Version: 1.0
     text-decoration: none;
     -webkit-transition: color 0.2s;
   }
-  
-  
+
+
   /* .tag:hover {
     background-color: crimson;
     color: white;
   } */
-  
+
   .tag:hover::after {
-     border-left-color: crimson; 
+     border-left-color: crimson;
   }
   #navbarSupportedContent a.nav-link {
     font-size: 17px;

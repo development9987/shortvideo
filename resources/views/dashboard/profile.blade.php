@@ -1,4 +1,12 @@
 @extends('layouts.dashboard.app')
+@section('style')
+<style>
+    .views-count{
+        margin: 0;
+        text-align: right;
+    }
+</style>
+@endsection
 @section('content')
 <div id="content-wrapper">
             <div class="container-fluid pb-0">
@@ -169,22 +177,45 @@
                 <div class="col-md-12">
                    <div class="row ">
                            @forelse ($profile->videos as $data)
-               
+
                            <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
                               <div class="video-card" >
                                  <div class="video-card-image">
                                     <a class="play-icon" href="#video-card-{{$data->id}}" data-fancybox="group"><i class="fas fa-play-circle"></i></a>
-                                    <a href="#"><img class="img-fluid" src="{{asset('storage'.$data->thumbnail)}}" alt=""></a>
+
+                                     <a href="#" >
+                                         @if (!empty($data->thumbnail))
+                                             <img class="img-fluid" src="{{asset('storage'.$data->thumbnail)}}" alt="">
+                                         @else
+                                             <img class="img-fluid" src="{{asset('assets/img/404.png')}}" alt="">
+                                         @endif
+
+                                     </a>
                                  </div>
                                  <div class="video-card-body">
-                                    <div class="video-title">
-                                       <a href="#" class="video-user">
-                                          <!-- <img alt="Avatar" src="img/user.png"> -->
-                                         {{$data->title}} </a>
-                                    </div>
+                                     <div class="video-title">
+                                         <div class="row">
+                                             <div class="col-lg-6 pt-2 video-top-head-left">
+                                                 <a href="#" class="video-user">
+                                                     @if(empty($data->user->profile))
+                                                         <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
+                                                     @else
+                                                         <img alt="Avatar" src="{{asset('storage'.$data->user->profile->image)}}">
+                                                     @endif
+                                                     {{ !empty($data->user->name) ? $data->user->name:''}}
+
+                                                 </a>
+                                             </div>
+                                             <div class="col-lg-6 pt-2">
+                                                 <p class="text-white views-count">{{$data->views}} Views</p>
+                                             </div>
+                                         </div>
+                                     </div>
                                  </div>
                                  <div class="video-card-body body-hastags">
                                     <div class="video-hastags">
+                                        <h4 class="video-title-h4">{{$data->title}}</h4>
+                                        <p class="video-title-p">{{Str::limit($data->description, 20)}}</p>
                                        <!-- <a href="#" class="">
                                        <i class="fas fa-edit"></i> </a>
                                        <a href="#" class="">
@@ -223,14 +254,14 @@
                                  <div class="usercomments">
                                  <div class="usercomments">
                                  <div class="row">
-                                  
+
                                  <input type="text" class="comment-input" id="comment{{$data->id}}" >
                                     <button class="btn btn-primary comment comment-btn" data-id="{{$data->id}}" type="button"><i class="far fa-comment-dots"></i></button>
                                  </div>
-                               
+
                                  </div>
                                  </div>
-                            
+
                               </div>
                            </div>
 

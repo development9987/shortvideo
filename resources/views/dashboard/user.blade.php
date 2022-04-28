@@ -14,9 +14,9 @@
                 @else
                 <img class="imgplace" src="{{asset('storage'.$user->profile->image)}}">
                 @endif
-                    
+
                   </div>
-              
+
                </div>
                <hr>
                <div class="row">
@@ -25,8 +25,7 @@
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="form-group">
-                                 <label for="e1">
-                                    <label> User Name </label>
+                                 <label for="e1">User Name </label>
                                  <input type="text" disabled value="{{$user->name}}" class="form-control">
                               </div>
                            </div>
@@ -37,16 +36,16 @@
                               </div>
                            </div> -->
                         </div>
-                        
-                     
-                     
+
+
+
                      </div>
-                   
+
                      <hr>
-            
+
                   </div>
                </div>
             </div>
-        
+
 
 @endsection

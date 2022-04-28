@@ -15,6 +15,7 @@
                      @if (Session::has('message'))
                      {{Session::get('message')}}
                   @endif
+
                     @forelse ($users as $user)
 
                     <div class="col-xl-3 col-sm-6 mb-3">
@@ -41,17 +42,15 @@
                               <a  href="{{route('delete.user',$user->id)}}">
                                <i class="fas fa-trash"></i>
                               </a>
-                                
-                           </div>
+
+                                </div>
                            </div>
 
                         </div>
+                    </div>
                     @empty
                          <h3>No User Found</h3>
                     @endforelse
-
-
-                  </div>
 
                </div>
                <hr>

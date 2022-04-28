@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand navbar-light bg-white static-top osahan-nav sticky-top mbd-none">
-         &nbsp;&nbsp; 
-
-         <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" style="width: 120px;" alt="" src="{{asset('assets/img/testing-logo-white.png')}}"></a>
+         &nbsp;&nbsp;
+        @if(Auth::user()->theme == 'dark')
+             <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+        @else
+        <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo-dark.png')}}"></a>
+        @endif
          <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: center;">
             <ul class="navbar-nav" style="margin-left: 20%;">
               <li class="nav-item active">
@@ -39,7 +42,7 @@
                <input type="text" name="str" class="form-control" placeholder="Search for...">
                <div class="input-group-append">
                   <button class="btn btn-light" type="submit">
-                  <i class="fas fa-search"></i> 
+                  <i class="fas fa-search"></i>
                   </button>
                </div>
             </div>
@@ -47,7 +50,7 @@
          <!-- Navbar -->
          @if(Auth::user())
          <label class="switch">
-  <input type="checkbox" id="mode">
+  <input type="checkbox" {{Auth::user()->theme == 'light' ? 'checked' : ''}} id="mode">
   <span class="slider round"></span>
 </label>
 @endif
@@ -88,32 +91,32 @@
                   <div class="dropdown-divider"></div>
                   <!-- <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star "></i> &nbsp; Something else here</a> -->
                <!-- </div>
-            </li> --> 
+            </li> -->
             @guest
             @if (Route::has('login'))
             <li class="nav-item active">
-              
+
             <a class="nav-link" href="{{ route('login') }}">
-            {{ __('Login') }} 
+            {{ __('Login') }}
             </a>
             </li>
             @endif
             @else
             <li class="nav-item dropdown no-arrow osahan-right-navbar-user">
-      
+
                <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              
+
               @if(!empty(\App\Models\Profile::profile_image()))
-              <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}"> 
+              <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}">
               @else
-              <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
+              <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
               @endif
-         
-              
+
+
                {{ Auth::user()->name }}
                </a>
-           
-               
+
+
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                   <a class="dropdown-item" href="{{route('user.profile',Auth::user()->id)}}"><i class="fas fa-fw fa-user-circle"></i> &nbsp; My Account</a>
                   <!-- <a class="dropdown-item" href="subscriptions.html"><i class="fas fa-fw fa-video"></i> &nbsp; Subscriptions</a> -->

@@ -11,7 +11,7 @@
       <title>VIDOE - Video Streaming Website HTML Template</title>
       <!-- Favicon Icon -->
       <link rel="icon" type="image/png" href="img/favicon.png">
- 
+
       <!-- Bootstrap core CSS-->
       <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
       <!-- Custom fonts for this template-->
@@ -20,7 +20,7 @@
    @if (Auth::user())
       @if (Auth::user()->theme == 'dark')
         <link href="{{asset('assets/css/osahan.css')}}" rel="stylesheet">
-      @else 
+      @else
         <link href="{{asset('assets/css/dark.css')}}" rel="stylesheet">
       @endif
    @else
@@ -35,7 +35,7 @@
       <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  
+
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <style>
 .switch {
@@ -158,28 +158,33 @@ input:checked + .slider:before {
     border-bottom-right-radius: 20px;
 }
       </style>
+       @yield('style')
    </head>
    <body id="page-top">
       <nav class="navbar navbar-expand navbar-light bg-white static-top osahan-nav sticky-top">
-         &nbsp;&nbsp; 
+         &nbsp;&nbsp;
          <button class="btn btn-link btn-sm text-secondary order-1 order-sm-0" id="sidebarToggle">
          <i class="fas fa-bars"></i>
-         </button> &nbsp;&nbsp;
+         </button>
+          @if(Auth::user()->theme == 'dark')
          <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+          @else
+          <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo-dark.png')}}"></a>
+          @endif
          <!-- Navbar Search -->
          <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search">
             <div class="input-group">
                <input type="text" class="form-control" placeholder="Search for...">
                <div class="input-group-append">
                   <button class="btn btn-light" type="button">
-                  <i class="fas fa-search"></i> 
+                  <i class="fas fa-search"></i>
                   </button>
                </div>
             </div>
          </form>
          @if(Auth::user())
          <label class="switch">
-  <input type="checkbox" id="mode">
+  <input type="checkbox" {{Auth::user()->theme == 'light' ? 'checked' : ''}} id="mode">
   <span class="slider round"></span>
 </label>
 @endif
@@ -220,9 +225,9 @@ input:checked + .slider:before {
                <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   @if(Auth::user())
                @if(!empty(\App\Models\Profile::profile_image()))
-                     <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}"> 
+                     <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}">
               @else
-                     <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
+                     <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
               @endif
               @endif
          @if(Auth::user())
@@ -233,7 +238,7 @@ input:checked + .slider:before {
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                   <a class="dropdown-item" href="{{route('user.profile',Auth::user()->id)}}"><i class="fas fa-fw fa-user-circle"></i> &nbsp; My Account</a>
                   <!-- <a class="dropdown-item" href="subscriptions.html"><i class="fas fa-fw fa-video"></i> &nbsp; Subscriptions</a> -->
-                  <a class="dropdown-item" href="{{route('setting',Auth::user()->id)}}"><i class="fas fa-fw fa-cog"></i> &nbsp; Settings</a> 
+                  <a class="dropdown-item" href="{{route('setting',Auth::user()->id)}}"><i class="fas fa-fw fa-cog"></i> &nbsp; Settings</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -316,7 +321,7 @@ input:checked + .slider:before {
       <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
       <script>
         const videos = document.querySelectorAll('video');
-   
+
    for (const video of videos) {
      video.addEventListener('click', function () {
        console.log('clicked');
@@ -327,29 +332,28 @@ input:checked + .slider:before {
        }
      });
    }
-    
-         
+
+
             $(document).ready(function(){
-               
+
                $("#usertable").DataTable();
             var APP_URL = {!! json_encode(url('/')) !!}
             $("#mode").on('change',function(){
-               if (this.checked) {
 
+               if (this.checked) {
+                   var themeType = 'light';
+               }else {
+                   var themeType = 'dark';
+               }
                   $.ajax({
                      type:'POST',
                 url:'/theme',
-                data:{_token: "{{ csrf_token() }}", theme:'light'},
+                data:{_token: "{{ csrf_token() }}", theme:themeType},
                 success:function(msg){
-
-                  location.reload(); 
-
+                  location.reload();
                 }
                   })
-                 
-                 
-               }
-           
+
             })
 
 

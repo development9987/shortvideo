@@ -11,7 +11,7 @@
                   <p>[LOGO HERE]</p>
                </div>
                <div class="toggle-btnz">
-                  <span></span> 
+                  <span></span>
                </div>
             </div>
          </header>
@@ -39,13 +39,13 @@
                   </div>
                </div>
                <div class="nav-body">
-                  <ul> 
+                  <ul>
                      <li> <i class="fas fa-fw fa-search" id='toggle-search'></i> Search </li>
                      <form action="{{route('search.video')}}" method="post">
                         @csrf
                      <input style='display:none;' id='searchBar' type="text" name="str" placeholder='Search&hellip;'>
                      </form>
-                    
+
                      <!-- <li><span><input class="form-control" name="search" ><i class="fas fa-search"></i></span></li> -->
                      <!-- <li> <a href=""> <i class="fas fa-fw fa-list"></i> Categories </a></li>
                      <li> <a href="#"> <i class="fas fa-fw fa-hashtag"></i> Discover </a></li> -->
@@ -62,14 +62,14 @@
             @else
             {{ Auth::user()->name }}
             @endguest
-                  
+
                   </div>
                </div>
             </div>
          </div>
       </div>
       <!-- End Mobile Nav -->
-     
+
       <div id="wrapper">
          <!-- Sidebar -->
          <!-- <ul class="sidebar navbar-nav">
@@ -141,7 +141,7 @@
                <ul>
                   <li>
                      <a href="subscriptions.html">
-                     <img class="img-fluid" alt="" src="img/s1.png"> Your Life 
+                     <img class="img-fluid" alt="" src="img/s1.png"> Your Life
                      </a>
                   </li>
                   <li>
@@ -151,12 +151,12 @@
                   </li>
                   <li>
                      <a href="subscriptions.html">
-                     <img class="img-fluid" alt="" src="img/s3.png"> Product / Service  
+                     <img class="img-fluid" alt="" src="img/s3.png"> Product / Service
                      </a>
                   </li>
                   <li>
                      <a href="subscriptions.html">
-                     <img class="img-fluid" alt="" src="img/s4.png">  Gaming 
+                     <img class="img-fluid" alt="" src="img/s4.png">  Gaming
                      </a>
                   </li>
                </ul>
@@ -166,7 +166,7 @@
             <div class="container-fluid pb-0">
                <div class="top-mobile-search  mbd-none">
                   <div class="row">
-                     <div class="col-md-12">   
+                     <div class="col-md-12">
                         <form class="mobile-search">
                            <div class="input-group">
                              <input type="text" placeholder="Search for..." class="form-control">
@@ -174,7 +174,7 @@
                                  <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
                                </div>
                            </div>
-                        </form>   
+                        </form>
                      </div>
                   </div>
                </div>
@@ -311,13 +311,13 @@
                </div>
                <hr>
                <div class="video-block section-padding"> <!-- Video section start-->
-             
+
                   <div class="row revrs">
                     @yield('content')
                   </div>
                </div>
                <hr class="mt-0">
-              
+
             </div>
             <!-- /.container-fluid -->
             <!-- Sticky Footer -->
@@ -350,7 +350,7 @@
       </div>
       <!-- Bootstrap core JavaScript-->
       <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
-      
+
       <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
       <!-- Core plugin JavaScript-->
       <script src="{{asset('assets/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
@@ -364,7 +364,7 @@
 
       <script>
          const videos = document.querySelectorAll('video');
-   
+
          // for (const video of videos) {
          //   video.addEventListener('click', function () {
          //     console.log('clicked');
@@ -381,10 +381,15 @@
 $('#toggle-search').on('click', function() {
   $('#searchBar').toggle('display: inline-block');
 });
-         
-            var APP_URL = {!! json_encode(url('/')) !!}
+
+            {{--var APP_URL = {!! json_encode(url('/')) !!}--}}
             $("#mode").on('change',function(){
-               if (this.checked) {
+
+                if (this.checked) {
+                    var themeType = 'light';
+                }else {
+                    var themeType = 'dark';
+                }
 
                $.ajax({
                 type:'POST',
@@ -392,14 +397,13 @@ $('#toggle-search').on('click', function() {
                 data:{_token: "{{ csrf_token() }}", theme:'light'},
                 success:function(msg){
 
-                  window.location.href = APP_URL;
+                  // window.location.href = APP_URL;
+                    location.reload();
 
                 }
                   })
-                 
-                 
-               }
-           
+
+
             })
 
 
