@@ -112,10 +112,10 @@
                <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                @if(empty($user->profile->image))
-                                          <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
-                                          @else
-                                          <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
-                                          @endif
+                  <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
+               @else
+                  <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
+               @endif
 
 
                {{ Auth::user()->name }}

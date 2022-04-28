@@ -227,13 +227,18 @@ input:checked + .slider:before {
             </li> -->
             <li class="nav-item dropdown no-arrow osahan-right-navbar-user">
                <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  @if(Auth::user())
+                  <!-- @if(Auth::user())
                @if(!empty(\App\Models\Profile::profile_image()))
                      <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}">
               @else
                      <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
               @endif
-              @endif
+              @endif -->
+               @if(empty($user->profile->image))
+                  <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
+               @else
+                  <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
+               @endif
          @if(Auth::user())
               {{ Auth::user()->name }}
          @endif
