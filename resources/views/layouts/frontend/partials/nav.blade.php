@@ -1,10 +1,15 @@
 <nav class="navbar navbar-expand navbar-light bg-white static-top osahan-nav sticky-top mbd-none">
-         &nbsp;&nbsp;
-        @if(Auth::user()->theme == 'dark')
-             <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+
+
+        @auth
+            @if(Auth::user()->theme == 'dark')
+                 <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+            @else
+            <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo-dark.png')}}"></a>
+            @endif
         @else
-        <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo-dark.png')}}"></a>
-        @endif
+            <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+        @endauth
          <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: center;">
             <ul class="navbar-nav" style="margin-left: 20%;">
               <li class="nav-item active">

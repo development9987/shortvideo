@@ -27,7 +27,7 @@
                            </div>
                            <div class="mr-5"><b>{{$videos_count}}</b>Videos</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('admin.videos')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -43,7 +43,7 @@
                            </div>
                            <div class="mr-5"><b>{{$users_count}}</b>Users</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('admin.users')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -59,7 +59,7 @@
                            </div>
                            <div class="mr-5"><b>{{$pendding_videos}}</b>Pending Videos</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('upload.request')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -75,7 +75,7 @@
                            </div>
                            <div class="mr-5"><b>{{$approved_videos}}</b>Approved Videos</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('admin.videos')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -83,7 +83,6 @@
                         </a>
                      </div>
                   </div>
-
                  @else
                  <div class="col-xl-3 col-sm-6 mb-3">
                      <div class="card text-white bg-primary o-hidden h-100 border-none">
@@ -93,7 +92,7 @@
                            </div>
                            <div class="mr-5"><b>{{$videos}}</b>Videos</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',Auth::user()->id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -109,7 +108,7 @@
                            </div>
                            <div class="mr-5"><b>{{$followers}}</b> Followers</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',Auth::user()->id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -125,7 +124,7 @@
                            </div>
                            <div class="mr-5"><b>{{$following}}</b> Followings</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',Auth::user()->id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -281,7 +280,7 @@
                               <!-- video ends -->
                            </div>
                            @empty
-                           <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
+                           <div class="col-xl-12 col-sm-6 col-xs-6 col-6 mb-3">
                               <h5>No Video Uploaded</h5>
                            </div>
                            @endforelse
@@ -290,48 +289,51 @@
 
              </div>
 
-             @else 
+             @else
              @endif
 
           </div>
 
                   </div>
                </div>
-               @if (Auth::user()->role == 'admin')
-               <h5>Users Detail</h5>
-               <table class="table" id="usertable">
-  <thead>
-    <tr>
-    
-      <th scope="col">User</th>
-      <th scope="col">Number Of Videos</th>
-      <th scope="col">Number Of Followers</th>
 
-    </tr>
-  </thead>
-  <tbody>
+               @auth
+                   @if (Auth::user()->role == 'admin')
+                   <h5>Users Detail</h5>
+                   <table class="table" id="usertable">
+      <thead>
+        <tr>
 
-  @forelse ($users as $user)
-  <tr>
-      <th scope="row">{{$user->name}}</th>
-      <td>{{count($user->videos)}}</td>
-      <td>{{count($user->followers)}}</td>
- 
-    </tr>
-  @empty
-     
-  @endforelse
-   
- 
-   <tr>
- 
-      <th scope="col">User</th>
-      <th scope="col">Number Of Videos</th>
-      <th scope="col">Number Of Followers</th>
-   </tr>
-  </tbody>
-</table> 
-               @endif
+          <th scope="col">User</th>
+          <th scope="col">Number Of Videos</th>
+          <th scope="col">Number Of Followers</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+      @forelse ($users as $user)
+      <tr>
+          <th scope="row">{{$user->name}}</th>
+          <td>{{count($user->videos)}}</td>
+          <td>{{count($user->followers)}}</td>
+
+        </tr>
+      @empty
+
+      @endforelse
+
+
+       <tr>
+
+          <th scope="col">User</th>
+          <th scope="col">Number Of Videos</th>
+          <th scope="col">Number Of Followers</th>
+       </tr>
+      </tbody>
+    </table>
+                   @endif
+                @endauth
 
 
                <hr class="mt-0">

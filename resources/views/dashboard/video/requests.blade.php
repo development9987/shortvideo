@@ -4,10 +4,10 @@
 <div id="content-wrapper">
             <div class="container-fluid pb-0">
 <div class="video-block section-padding"> <!-- Video section start-->
-          
+
              <div class="row revrs">
                 <div class="col-md-12">
-                <h3>My Videos</h3>
+                <h3 class="pt-3 pb-4 text-center">My Videos</h3>
                    <div class="row ">
                        @forelse ($videos as $video)
                        <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
@@ -27,7 +27,7 @@
                             </div>
                             <div class="video-card-body body-hastags">
                                <div class="video-hastags">
-                                   
+
                                     <a class="btn btn-primary" href="{{route('approve.video',$video->id)}}">Approve</a>
                                     <a class="btn btn-danger"  href="{{route('reject.video',$video->id)}}" >Cancel</a>
                                   <!-- <a href="#" class="">
@@ -38,7 +38,7 @@
                          <!-- video starts -->
                          <div class="video" id="video-card-{{$video->id}}" style="display: none;">
                             <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
-                   
+
                             <!-- sidebar -->
                             <div class="videoSidebar">
                             <!-- <div class="videoSidebar__button">
@@ -50,23 +50,23 @@
                                <span class="material-icons"> message </span>
                                <p>23</p>
                             </div> -->
- 
+
                             </div>
-                   
+
                             <!-- footer -->
-                         
-                         
+
+
                          </div>
                          <!-- video ends -->
-                      </div> 
+                      </div>
                         @empty
-                           <div>
-                               <h4>No Request Found</h4>
-                           </div>   
+                           <div class="col-lg-12">
+                               <h4 class="pt-3 pb-4 text-center">No Request Found</h4>
+                           </div>
                         @endforelse
                    </div>
                 </div>
-               
+
              </div>
           </div>
 </div>

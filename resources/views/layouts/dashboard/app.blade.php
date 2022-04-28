@@ -166,10 +166,14 @@ input:checked + .slider:before {
          <button class="btn btn-link btn-sm text-secondary order-1 order-sm-0" id="sidebarToggle">
          <i class="fas fa-bars"></i>
          </button>
-          @if(Auth::user()->theme == 'dark')
-         <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+          @if(Auth::user())
+              @if(Auth::user()->theme == 'dark')
+              <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
+              @else
+              <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo-dark.png')}}"></a>
+              @endif
           @else
-          <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo-dark.png')}}"></a>
+              <a class="navbar-brand mr-1" href="{{route('index')}}"><img class="img-fluid" alt="" src="{{asset('assets/img/logo.png')}}"></a>
           @endif
          <!-- Navbar Search -->
          <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search">
