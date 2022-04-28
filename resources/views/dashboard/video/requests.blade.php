@@ -13,20 +13,21 @@
                        <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
                          <div class="video-card" >
                             <div class="video-card-image">
-                               <a class="play-icon" href="#video-card-1" data-fancybox="group"><i class="fas fa-play-circle"></i></a>
+                              <a class="play-icon" href="#video-card-{{$video->id}}" data-fancybox="group">
+                                 <i class="fas fa-play-circle"></i>
+                              </a>
                                <a href="#"><img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt=""></a>
                             </div>
                             <div class="video-card-body">
                                <div class="video-title">
                                   <a href="#" class="video-user">
-                                     <img alt="Avatar" src="img/user.png">
-                                     Osahan </a>
+                                     <!-- <img alt="Avatar" src="img/user.png"> -->
+                                     {{$video->user->name}} </a>
                                </div>
                             </div>
                             <div class="video-card-body body-hastags">
                                <div class="video-hastags">
                                    
-                                    
                                     <a class="btn btn-primary" href="{{route('approve.video',$video->id)}}">Approve</a>
                                     <a class="btn btn-danger"  href="{{route('reject.video',$video->id)}}" >Cancel</a>
                                   <!-- <a href="#" class="">
@@ -35,20 +36,20 @@
                             </div>
                          </div>
                          <!-- video starts -->
-                         <div class="video" id="video-card-1" style="display: none;">
+                         <div class="video" id="video-card-{{$video->id}}" style="display: none;">
                             <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
                    
                             <!-- sidebar -->
                             <div class="videoSidebar">
-                            <div class="videoSidebar__button">
+                            <!-- <div class="videoSidebar__button">
                                <span class="material-icons">favorite_border</span>
                                <p>12</p>
                             </div>
-                   
-                            <div class="videoSidebar__button">
+                    -->
+                            <!-- <div class="videoSidebar__button">
                                <span class="material-icons"> message </span>
                                <p>23</p>
-                            </div>
+                            </div> -->
  
                             </div>
                    
@@ -58,13 +59,11 @@
                          </div>
                          <!-- video ends -->
                       </div> 
-                       @empty
+                        @empty
                            <div>
-                               <h4>No Videos Uploaded</h4>
+                               <h4>No Request Found</h4>
                            </div>   
-                       @endforelse
-                   
-                
+                        @endforelse
                    </div>
                 </div>
                

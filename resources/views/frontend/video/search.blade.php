@@ -106,7 +106,7 @@
 @section('script')
 <script>
 
-
+var base_url = window.location.origin;
 var page = 1;
 $(window).scroll(function() {
  if($(window).scrollTop() + $(window).height() >= $(document).height()) {
@@ -157,7 +157,8 @@ $.ajax({
           error(err){
 
 if(err.status === 401 ){
-window.location.replace("http://shortvideo2.test/login");
+   var base_url = window.location.origin;
+window.location.replace(base_url+"/login");
 }
 
 }
@@ -189,7 +190,7 @@ $(".likeBtn").text('favorite_border')
           error(err){
 
             if(err.status === 401 ){
-               window.location.replace("http://shortvideo2.test/login");
+               window.location.replace(base_url+"/login");
             }
 
           }
