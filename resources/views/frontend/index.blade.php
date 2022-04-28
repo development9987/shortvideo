@@ -61,13 +61,13 @@
 }
 
 #desk-play-icon {
-    
+
     display:block;
 
  }
 
  #mobile-play-icon {
-    
+
     display:none;
 
  }
@@ -88,7 +88,7 @@
 
 }
 #imgMobile {
- 
+
 
 display:block;
 
@@ -98,12 +98,12 @@ display:block;
 @media screen and (max-width: 700px) {
 
     #desk-play-icon {
-    
+
        display:none;
- 
+
     }
     #mobile-play-icon {
-    
+
     display:block;
 
  }
@@ -123,7 +123,12 @@ display:block;
 .video-title-p {
    color: #fff
 }
-
+.views-count{
+    padding-left: 50px;
+}
+.video-card-body{
+    width: 100%;
+}
 
 
 </style>
@@ -169,12 +174,14 @@ display:block;
    </div>
    </form>
 </div>
-             
+
    <div class="row">
-      
+
                            @foreach($videos as $video)
+
+
                               <div class="col-xl-4 col-sm-6 col-xs-6 col-6 mb-3">
-                              <div class="video-card" >
+                              <div class="video-card" onclick="addVideoViews({{$video->id}})" >
                                  <div class="video-card-image">
                                     <a class="play-icon" href="#video-card-{{$video->id}}" id="desk-play-icon" data-fancybox="group"><i class="fas fa-play-circle"></i></a>
                                     <a class="play-icon" href="{{route('mobile.view', $video->id)}}" id="mobile-play-icon"><i class="fas fa-play-circle"></i></a>
@@ -187,6 +194,7 @@ display:block;
                                        @endif
                                        
                                     </a>
+
                                  </div>
                                  <div class="video-card-body">
                                     <div class="video-title">
@@ -195,13 +203,14 @@ display:block;
                                           <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
                                        @else
                                           <img alt="Avatar" src="{{asset('storage'.$video->user->profile->image)}}">
-                                       @endif  
+                                       @endif
                                          {{ !empty($video->user->name) ? $video->user->name:''}}
-                                         
+
                                        </a>
+                                        <span class="text-white views-count">{{$video->views}} Views</span>
                                     </div>
                                  </div>
-                                 
+
                                  <div class="video-card-body body-hastags">
                                     <h4 class="video-title-h4">{{$video->title}}</h4>
                                     <p class="video-title-p">{{Str::limit($video->description, 20)}}</p>
@@ -237,7 +246,7 @@ display:block;
                                        <span data-id ="{{$video->id}}" class="videcomment-btn material-icons"> message </span>
                                        <p>{{App\Models\Comment::countComment($video->id)}}</p>
                                  </div>
-      
+
                                  </div>
                                  <div class="videoComments d-none" id="videoComments{{$video->id}}">
                               <div class="comment-header">
@@ -247,15 +256,17 @@ display:block;
                               <div class="comment-section">
                               <div class="usercomments">
                                  <div class="row">
-                                  
+
                                  <input type="text" class="comment-input" id="comment{{$video->id}}" >
+                                 
                                  <button class="btn btn-primary comment comment-btn" data-id="{{$video->id}}" type="button"><i class="far fa-comment-dots"></i></button>
       
+
                                  </div>
-                               
+
                                  </div>
                                    <div class="commentarea"></div>
-                                  
+
                                 @forelse ($video->comments as $comment)
                                 <div class="usercomments">
                                     <div class="video-title">
@@ -273,7 +284,7 @@ display:block;
                                 @empty
                                    no comments
                                 @endforelse
-                                 
+
                                  <!-- <div class="usercomments">
                                     <div class="video-title">
                                        <a href="#" class="video-user">
@@ -287,20 +298,20 @@ display:block;
                                        <p>04-21</p>
                                     </div>
                                  </div> -->
-                                
+
                               </div>
                            </div>
 
-                        
+
                                  <!-- footer -->
                                  <div class="videoFooter">
                                  <div class="videoFooter__text">
                                     <div class="video-user-own">
                                     <a href="#" class="video-user video-user-fancy">
                                           <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
-                                        
+
                                        {{ !empty($video->user->name) ? $video->user->name:'' }}
-                                        
+
                                     </a>
                                     </div>
                                     <!-- <p class="videoFooter__description">Best Video Ever</p> -->
@@ -310,7 +321,7 @@ display:block;
                               <!-- video ends -->
                            </div>
                            @endforeach
-<!--                       
+<!--
                            <div class="ajax-load text-center" style="display:none">
 	<p><img src="{{asset('assets/plugin/loader.gif')}}"></p>
 </div> -->
@@ -324,22 +335,22 @@ display:block;
                               </div>
                               <div class="col-6 mbd-none tt-right">
                                  <div class="col-12">
-                               
+
                                  </div>
-                              
+
                                  <form>
-                                 
-                                  
+
+
                                  </form>
                               </div>
                            <div class="row">
                               <div class="container" style="padding: 20px;">
                                  <ul class="tags">
-                                  @foreach($videotags as $key => $videotag) 
+                                  @foreach($videotags as $key => $videotag)
                                        @foreach ($videotag as $tag)
                                        <li><a href="{{route('tag.video',preg_replace('/[^a-zA-Z0-9_ %\.\(\)%&-]/s', '', $tag))}}" class="tag" style="background: {{sprintf("#%06x",rand(0,16777215))}}" >#{{ preg_replace('/[^a-zA-Z0-9_ %\.\(\)%&-]/s', '', $tag) }}</a></li>
                                        @endforeach
-                                 @endforeach 
+                                 @endforeach
                                     <!-- <li><a href="#" class="tag" style="background: linear-gradient(135deg, #4eda92 1%,#56e0cb 100%)">#JavaScript</a></li>
                                     <li><a href="#" class="tag" style="background: linear-gradient(135deg, #ff25bc 0%,#7553ff 100%);">#Videos</a></li>
                                     <li><a href="#" class="tag">#shortvideos</a></li>
@@ -351,7 +362,7 @@ display:block;
                                     <li><a href="#" class="tag">#drama</a></li>
                                     <li><a href="#" class="tag">#crime</a></li> -->
                                  </ul>
-                        
+
                               </div>
                            </div>
                            <div class="row">
@@ -360,10 +371,10 @@ display:block;
                               </div>
                               <!--profile-->
                               @foreach($user as $user)
-                               
-                            
+
+
                               <div class="col-md-12 mbd-none">
-                                 <div class="profl"> 
+                                 <div class="profl">
                                     <div class="">
                                        <a href="{{route('user.profile',$user->id)}}" class="video-user">
                                           @if(empty($user->profile->image))
@@ -371,7 +382,6 @@ display:block;
                                           @else
                                           <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
                                           @endif
-
                                        </a>
                                     </div>
                                     <div class="">
@@ -379,18 +389,21 @@ display:block;
                                           <a href="{{route('user.profile',$user->id)}}">{{$user->name}}</a>
                                        </div>
                                        <div class="video-view">
-                                          {{count($user->followers)}}followers  &nbsp;<i class="fas fa-user"></i> 
+                                          {{count($user->followers)}}followers  &nbsp;<i class="fas fa-user"></i>
                                        </div>
                                     </div>
                                  </div>
                               </div>
+
                               @endforeach
-                            
+
                            </div>
                         </div>
                      </div>
+
                      <div class="video-block mbd-none section-padding"> 
                </div>
+
 @endsection
 @section('scripts')
    <script>
@@ -408,7 +421,7 @@ display:block;
    $(document).ready(function(){
 
 
-   
+
 
       $(".video").on("contextmenu",function(e){
                      return false;
@@ -431,7 +444,7 @@ $(".videoComments").addClass('d-none');
 $('.comment').on('click',function(){
    var id = $(this).data('id');
    var comment = $("#comment"+id).val();
-  
+
 
    $.ajax({
                 type:'POST',
@@ -439,10 +452,10 @@ $('.comment').on('click',function(){
                 data:{_token: "{{ csrf_token() }}",
                 'video_id' : id,
                 'comment' : comment
-            
+
                 },
                 success: function( msg ) {
-                       console.log(msg.body)       
+                       console.log(msg.body)
                    var result = '<div class="usercomments"><div class="video-title"><a href="#" class="video-user"><img alt="Avatar" src="g">Osahan </a></div><div class="comment"><p>'+msg.body+'</p></div><div class="comment-timestamp"><p>04-21</p></div></div>'
                    $(".commentarea").append(result)
                 },
@@ -475,8 +488,8 @@ $(".likeBtn").on('click',function(){
    }else if(msg == "unLiked"){
       $(".likeBtn").text('favorite_border')
    }
-                   
-                    
+
+
                 },
                 error(err){
 
@@ -517,5 +530,26 @@ $(".likeBtn").on('click',function(){
 	            //   alert('server not responding...');
 	        });
 	}
+    // -----------
+      function addVideoViews(videoId) {
+          // var id =  $("#videoId").data("id");
+          console.log(videoId);
+          $.ajax({
+              type: "post",
+              dataType: "json",
+              url: "{{route('addVideoViews')}}",
+              data: {videoId: videoId, _token: "{{csrf_token()}}"},
+              success: function (response) {
+                  console.log(response);
+                  // if (response.status == 0) {
+                  //     // toastr.error("No data found");
+                  //     // $(".fetchExerciseData").html("");
+                  //     $(".fetchExerciseData").html(response.body);
+                  // } else {
+                  //     $(".fetchExerciseData").html(response.body);
+                  // }
+              },
+          });
+      }
 </script>
 @endsection

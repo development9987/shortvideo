@@ -10,7 +10,7 @@
                            </div>
                            <div class="single-video-title box mb-3">
                               <h2><a href="#">{{$video->title}}.</a></h2>
-                              <p class="mb-0"><i class="fas fa-eye"></i> 2,729,347 views</p>
+                              <p class="mb-0"><i class="fas fa-eye"></i> {{$video->views}} views</p>
                            </div>
                            <div class="single-video-author box mb-3">
                              <div class="float-right">
@@ -37,7 +37,7 @@
                            </div>
                         </div>
                      </div>
-              
+
                   </div>
                </div>
             </div>

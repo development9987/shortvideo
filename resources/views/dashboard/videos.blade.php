@@ -9,10 +9,10 @@
                      @forelse ($videos as $video)
                      <div class="col-xl-3 col-sm-6 mb-3">
                         <div class="category-item mt-0 mb-0">
-                           <a href="shop.html">
+                           <a href="{{route('admin.show',$video->id)}}">
                               <img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt="">
                               <h6>{{$video->title}} <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></span></h6>
-                              <p>74,853 views</p>
+                              <p>{{$video->views}} views</p>
 
                            </a>
                            <div class="channels-view">
@@ -32,7 +32,11 @@
 
 
                   </div>
-                    {!! $videos->links() !!}
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            {!! $videos->links() !!}
+                        </div>
+                    </div>
 {{--                  <nav aria-label="Page navigation example">--}}
 {{--                     <ul class="pagination justify-content-center pagination-sm mb-0">--}}
 {{--                        <li class="page-item disabled">--}}

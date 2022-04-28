@@ -13,31 +13,21 @@ class FrontendController extends Controller
 {
       public function index(){
 
-     
-        
-       
-
         $videos = Video::where('status','=','approved')->with('user.followers')->with('comments.user')->with('user.profile')->latest()->get();
-        
+
         $tags = Video::pluck('tags')->take(10)->toArray();
         foreach($tags as $key => $tag){
           $videotags[$key] = (explode(" ",$tag));
 
         }
 
-
         return view('frontend.index',compact('videos','tags','videotags'));
       }
 
-      
-
       public function changeTheme(Request $request){
-     
-
- 
 
         $user = User::where('id',Auth::user()->id)->first();
-     
+
         if($user->theme == 'dark')
         {
           $user->theme = 'light';
@@ -47,16 +37,24 @@ class FrontendController extends Controller
           $user->theme = 'dark';
           $user->update();
         }
-        
-       
 
-          return response()->json('updated');
- 
-        
-    
+        return response()->json('updated');
 
       }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
+    public function addVideoViews(Request $request){
 
-      
+        $video = Video::find($request->videoId);
+        $video->views = $video->views+1;
+        $video->save();
+        return true;
+
+    }
+
+
+
 }

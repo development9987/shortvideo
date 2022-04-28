@@ -6,16 +6,17 @@
                   <div class="row">
                      <div class="col-md-12">
                         <div class="main-title">
-                          
+
                            <hr>
                            <h6>Users</h6>
                            <hr>
                         </div>
                      </div>
                      @if (Session::has('message'))
-                     {{Session::get('message')}}                     
+                     {{Session::get('message')}}
                   @endif
                     @forelse ($users as $user)
+
                     <div class="col-xl-3 col-sm-6 mb-3">
                         <div class="channels-card">
                            <div class="channels-card-image">
@@ -43,19 +44,19 @@
                                 
                            </div>
                            </div>
+
                         </div>
-                     </div>
                     @empty
                          <h3>No User Found</h3>
                     @endforelse
-                    
-              
+
+
                   </div>
-                 
+
                </div>
                <hr>
-           
+
             </div>
-     
+
          </div>
 @endsection
