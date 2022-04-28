@@ -25,6 +25,7 @@ Version: 1.0
      position: relative;
      min-height: 100%;
 }
+
  body {
      background-color: #fafafa;
      color: #888;
@@ -162,6 +163,7 @@ Version: 1.0
          width: auto;
     }
 }
+
  .sidebar {
      width: 90px !important;
      background: #ff516b;

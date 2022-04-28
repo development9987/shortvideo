@@ -43,6 +43,11 @@
 .video-card-body {
     padding: 6px;
 }
+.dataTables_wrapper {
+  position: relative;
+  clear: both;
+  background-color: #fff;
+}
 
 
 .fancybox-slide{

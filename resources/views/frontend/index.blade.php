@@ -418,7 +418,7 @@ option {
 @section('scripts')
    <script>
 
-
+var base_url = window.location.origin;
       var page = 1;
 	$(window).scroll(function() {
 	    if($(window).scrollTop() + $(window).height() >= $(document).height()) {
@@ -472,7 +472,7 @@ $('.comment').on('click',function(){
                 error(err){
 
 if(err.status === 401 ){
-   window.location.replace("http://shortvideo2.test/login");
+   window.location.replace(base_url+"/login");
 }
 
 }
@@ -504,7 +504,7 @@ $(".likeBtn").on('click',function(){
                 error(err){
 
                   if(err.status === 401 ){
-                     window.location.replace("http://shortvideo2.test/login");
+                     window.location.replace(base_url+"/login");
                   }
 
                 }
