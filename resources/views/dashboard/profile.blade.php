@@ -92,7 +92,7 @@
                            </div>
                            <div class="mr-5"><b>{{$videos}}</b>Videos</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',Auth::user()->id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',$profile->id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -108,7 +108,7 @@
                            </div>
                            <div class="mr-5"><b>{{$followers}}</b> Followers</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',Auth::user()->id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',$profile->id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -124,7 +124,7 @@
                            </div>
                            <div class="mr-5"><b>{{$following}}</b> Followings</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',Auth::user()->id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',$profile->id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
