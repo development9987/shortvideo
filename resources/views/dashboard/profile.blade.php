@@ -258,54 +258,49 @@
                 </div>
 
              </div>
-             @else
 
-
-
-             <table class="table" id="usertable">
-  <thead>
-    <tr>
-    <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Number Of Videos</th>
-      <th scope="col">Image</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Number Of Videos</th>
-      <th scope="col">Image</th>
-
-    </tr>
-  </tbody>
-</table>
+             @else 
              @endif
 
           </div>
 
                   </div>
                </div>
+               @if (Auth::user()->role == 'admin')
+               <h5>Users Detail</h5>
+               <table class="table" id="usertable">
+  <thead>
+    <tr>
+    
+      <th scope="col">User</th>
+      <th scope="col">Number Of Videos</th>
+      <th scope="col">Number Of Followers</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+  @forelse ($users as $user)
+  <tr>
+      <th scope="row">{{$user->name}}</th>
+      <td>{{count($user->videos)}}</td>
+      <td>{{count($user->followers)}}</td>
+ 
+    </tr>
+  @empty
+     
+  @endforelse
+   
+ 
+   <tr>
+ 
+      <th scope="col">User</th>
+      <th scope="col">Number Of Videos</th>
+      <th scope="col">Number Of Followers</th>
+   </tr>
+  </tbody>
+</table> 
+               @endif
 
 
                <hr class="mt-0">

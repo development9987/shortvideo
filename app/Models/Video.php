@@ -13,9 +13,9 @@ class Video extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = [];
 
-    protected $fillable = ['views'];
+
+    protected $fillable = ['views','video_url','title','description','tags','user_id','thumbnail','status'];
 
 
     public function user(){

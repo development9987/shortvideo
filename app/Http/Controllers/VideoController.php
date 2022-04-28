@@ -27,6 +27,7 @@ class VideoController extends Controller
     public function upload_video(Request $request){
      
         $data=$request->all();
+
         $admin = User::where('role','admin')->first(); 
         $u = Auth::user();
         $followers = User::where('id',Auth::user()->id)->with('followers')->first();
@@ -58,18 +59,17 @@ class VideoController extends Controller
                     ->toDisk('local')
                     ->save("public/thumbnails/".time().".png"); 
 
-                      $user['video_url']       =  $video_path;
-                      $user['user_id']     = Auth::user()->id;
-                      $user['title']       = $data['title'];
-                      $user['tags']        = json_encode($data['tags']);
-                      $user['description']       = $data['description'];
-                      $user['thumbnail'] = $thumbnail;
-                      $user['status'] = 'pendding';
-                      
-                   
-                     
                     //DB::table('user_videos')->insert($user);
-                    $videodetails = $videoupload->create($user);
+                    $videodetails = Video::create([
+                      'video_url'       =>  $video_path,
+                      'user_id'     => Auth::user()->id,
+                      'title'      => $data['title'],
+                      'tags'        => json_encode($data['tags']),
+                      'description'       => $data['description'],
+                      'thumbnail' => $thumbnail,
+                      'status' => 'pendding',
+
+                    ]);
                     // Notification::send($admin, new VideoUpload($videodetails));
                     foreach ($followers->followers as $follower) {
                       
@@ -246,8 +246,10 @@ class VideoController extends Controller
   }
 
   public function upload_request(){
+     
+    $status = 'pendding';
+    $videos = Video::with('user')->where('status',$status)->get();
 
-    $videos = Video::where('status','pendding')->get();
     return view('dashboard.video.requests',compact('videos'));
 
   }
@@ -267,7 +269,14 @@ class VideoController extends Controller
       }
       
     }
-    return view('frontend.video.search',compact('videos'));
+    $tags = Video::pluck('tags')->take(10)->toArray();
+    foreach($tags as $key => $tag){
+      $videotags[$key] = (explode(" ",$tag));
+
+    }
+
+    // return view('frontend.video.search',compact('videos'));
+    return view('frontend.index',compact('videos','tags','videotags'));
   }
 
 
