@@ -36,6 +36,7 @@ Route::prefix('dashboard')->group(function(){
 
 Route::post('/search/video',[App\Http\Controllers\VideoController::class,'searchVideo'])->name('search.video');
 Route::middleware('auth')->group(function(){
+    
     Route::get('/upload',[App\Http\Controllers\VideoController::class,'upload'])->name('upload.video');
 
     Route::post('/upload/video',[App\Http\Controllers\VideoController::class,'upload_video'])->name('store.video');
