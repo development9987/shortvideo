@@ -386,8 +386,8 @@ $('#toggle-search').on('click', function() {
             $("#mode").on('change',function(){
                if (this.checked) {
 
-                  $.ajax({
-                     type:'POST',
+               $.ajax({
+                type:'POST',
                 url:'/theme',
                 data:{_token: "{{ csrf_token() }}", theme:'light'},
                 success:function(msg){

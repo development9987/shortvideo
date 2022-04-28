@@ -17,24 +17,26 @@
       <!-- Custom fonts for this template-->
       <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
       <!-- Custom styles for this template-->
-      @if (Auth::user())
+   @if (Auth::user())
       @if (Auth::user()->theme == 'dark')
         <link href="{{asset('assets/css/osahan.css')}}" rel="stylesheet">
       @else 
         <link href="{{asset('assets/css/dark.css')}}" rel="stylesheet">
       @endif
-    @else
+   @else
       <link href="{{asset('assets/css/osahan.css')}}" rel="stylesheet">
-    @endif
+   @endif
       <link href="{{asset('assets/css/select2.css')}}" rel="stylesheet">
+      <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
       <!-- Owl Carousel -->
       <link rel="stylesheet" href="{{asset('assets/vendor/owl-carousel/owl.carousel.css')}}">
       <link rel="stylesheet" href="{{asset('assets/vendor/owl-carousel/owl.theme.css')}}">
       <link rel="stylesheet" href="{{asset('js/app.js')}}">
       <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <style>
 .switch {
   position: relative;
@@ -96,6 +98,64 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+.videoComments{
+    width: 100%;
+    height: 220px;
+    position: absolute;
+    background: #fff;
+    bottom: 0px;
+    z-index: 3;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.comment-header {
+  padding: 15px;
+}
+.comment-section {
+  padding: 2px 15px 2px 15px;
+  overflow-y: scroll;
+  height: 65%;
+}
+.comment-section::-webkit-scrollbar {
+  display: none;
+}
+.comment-section a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+.comment p {
+  font-size: 15px;
+}
+.comment-timestamp p {
+  margin-top: -15px;
+  font-size: 10px;
+}
+.comment-input {
+    width: 75%;
+    background: #efefef;
+    border-top: 1px solid #bfbfbf !important;
+    border-bottom: 1px solid #bfbfbf !important;
+    border-left: 1px solid #bfbfbf !important;
+    border-right: 0px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-right: -1px;
+    padding: 8px;
+}
+
+.comment-btn {
+    width: 10%;
+    background: #efefef;
+    color: #ff0000;
+    padding: 4px 4px 4px 4px;
+    border-top: 1px solid #bfbfbf !important;
+    border-bottom: 1px solid #bfbfbf !important;
+    border-right: 1px solid #bfbfbf !important;
+    border-left: 1px solid #bfbfbf !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
       </style>
    </head>
@@ -165,9 +225,9 @@ input:checked + .slider:before {
                      <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}"> 
               @endif
               @endif
-          @if(Auth::user())
+         @if(Auth::user())
               {{ Auth::user()->name }}
-            @endif
+         @endif
                </a>
                @if(Auth::user())
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -253,22 +313,24 @@ input:checked + .slider:before {
       <script src="{{asset('assets/js/custom.js')}}"></script>
       <script src="{{asset('assets/js/select2.js')}}"></script>
       <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
       <script>
-         const videos = document.querySelectorAll('video');
+        const videos = document.querySelectorAll('video');
    
-         for (const video of videos) {
-           video.addEventListener('click', function () {
-             console.log('clicked');
-             if (video.paused) {
-               video.play();
-             } else {
-               video.pause();
-             }
-           });
-         }
+   for (const video of videos) {
+     video.addEventListener('click', function () {
+       console.log('clicked');
+       if (video.paused) {
+         video.play();
+       } else {
+         video.pause();
+       }
+     });
+   }
     
          
             $(document).ready(function(){
+               
                $("#usertable").DataTable();
             var APP_URL = {!! json_encode(url('/')) !!}
             $("#mode").on('change',function(){
