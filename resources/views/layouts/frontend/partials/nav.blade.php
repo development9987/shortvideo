@@ -111,11 +111,16 @@
 
                <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-               @if(empty($user->profile->image))
-                  <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
-               @else
-                  <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
-               @endif
+               @if(Auth::user())
+               @php
+                    $image = App\Models\User::where('id',Auth::user()->id)->with('profile')->first();
+                 @endphp
+               @if(!empty($image->profile->image))
+                     <img alt="Avatar" src="{{asset('storage'.$image->profile->image)}}">
+              @else
+                     <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
+              @endif
+              @endif
 
 
                {{ Auth::user()->name }}

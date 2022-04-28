@@ -12,7 +12,12 @@
             <div class="container-fluid pb-0">
                 <div class="row">
                     <div class="col-lg-12 text-center pt-3">
-                    <img alt="Avatar" style="border-radius:50%; width: 7%" class="mt-2 mb-2" src="{{asset('storage'.$profile->profile->image)}}">
+                       @if (!empty($profile->profile->image))
+                       <img alt="Avatar" style="border-radius:50%; width: 7%" class="mt-2 mb-2" src="{{asset('storage'.$profile->profile->image)}}">
+                       @else
+                       <img alt="Avatar" style="border-radius:50%; width: 7%" class="mt-2 mb-2" src="{{asset('assets/img/dummy.png')}}">  
+                       @endif
+                   
                     <h4>{{$profile->name}}</h4>
                     </div>
                 </div>
@@ -92,7 +97,7 @@
                            </div>
                            <div class="mr-5"><b>{{$videos}}</b>Videos</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',Auth::user()->id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',$profile->profile->user_id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -108,7 +113,7 @@
                            </div>
                            <div class="mr-5"><b>{{$followers}}</b> Followers</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',Auth::user()->id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',$profile->profile->user_id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -124,7 +129,7 @@
                            </div>
                            <div class="mr-5"><b>{{$following}}</b> Followings</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',Auth::user()->id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',$profile->profile->user_id)}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
