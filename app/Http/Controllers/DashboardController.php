@@ -46,7 +46,7 @@ class DashboardController extends Controller
     public function profile($id){
 
         $profile = User::with('videos.user')->with('followers','following')->where('id',$id)->first();
-        $users = User::with('videos','followers')->where('role','user')->get();
+        $users = User::with('videos','followers','profile')->where('role','user')->get();
         $videos = $profile->videos->count();
         $followers = $profile->followers->count();
         $following = $profile->following->count();

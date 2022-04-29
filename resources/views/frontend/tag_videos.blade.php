@@ -112,7 +112,12 @@
                                  <div class="profl"> 
                                     <div class="">
                                        <a href="{{route('user.profile',$user->id)}}" class="video-user">
-                                          <img alt="Avatar" src="{{asset('assets/img/user.png')}}">
+                                          @if (!empty($user->profile->image))
+                                          <img alt="Avatar" src="{{asset('storage'.$user->profile->image)}}">
+                                          @else
+                                          <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
+                                          @endif
+                                         
                                        </a>
                                     </div>
                                     <div class="">

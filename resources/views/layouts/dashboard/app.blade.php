@@ -226,10 +226,13 @@ input:checked + .slider:before {
                </div>
             </li> -->
             <li class="nav-item dropdown no-arrow osahan-right-navbar-user">
-               <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  @if(Auth::user())
-               @if(!empty(\App\Models\Profile::profile_image()))
-                     <img alt="Avatar" src="{{asset('storage'.\App\Models\Profile::profile_image()->image)}}">
+                 @if(Auth::user())
+                 @php
+                    $image = App\Models\User::where('id',Auth::user()->id)->with('profile')->first();
+                 @endphp
+                 <a class="nav-link dropdown-toggle user-dropdown-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              @if(!empty($image->profile->image))
+                     <img alt="Avatar" src="{{asset('storage'.$image->profile->image)}}">
               @else
                      <img alt="Avatar" src="{{asset('assets/img/dummy.png')}}">
               @endif
@@ -246,10 +249,11 @@ input:checked + .slider:before {
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal"  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                     <i class="fas fa-fw fa-sign-out-alt"></i> &nbsp;    {{ __('Logout') }}</a>
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                     <i class="fas fa-fw fa-sign-out-alt"></i> &nbsp;    {{ __('Logout') }}
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
-                     </form>
+                   </form>
                </div>
                @endif
             </li>
