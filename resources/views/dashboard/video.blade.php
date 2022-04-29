@@ -6,7 +6,7 @@
                      <div class="col-md-12">
                         <div class="single-video-left">
                            <div class="single-video">
-                              <iframe width="100%" height="315" src="{{asset('storage/'.$video->video_url)}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                              <iframe width="100%" height="315" src="{{asset('storage/public/'.$video->video_url)}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                            </div>
                            <div class="single-video-title box mb-3">
                               <h2><a href="#">{{$video->title}}.</a></h2>

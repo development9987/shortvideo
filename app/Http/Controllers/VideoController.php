@@ -47,17 +47,18 @@ class VideoController extends Controller
                   $video=$data['file']; 
                   // $input = time().".".$video->getClientOriginalExtension();
                    $thumbnail = "/thumbnails/".time().".png";
+                
                   // $destinationPath = 'uploads/videos';
                   // $upload_status = $video->move($destinationPath, $input);
                   $path = $request->file('file')->store("public/videos");
                   $video_path = str_replace('public','',$path);
                  
-                    FFMpeg::fromDisk('local')
+                    FFMpeg::fromDisk('public')
                     ->open($path)
                     ->getFrameFromSeconds(1)
                     ->export()
-                    ->toDisk('local')
-                    ->save("public/thumbnails/".time().".png"); 
+                    ->toDisk('public')
+                    ->save($thumbnail); 
 
                     //DB::table('user_videos')->insert($user);
                     $videodetails = Video::create([
@@ -85,8 +86,13 @@ class VideoController extends Controller
     public function tags_videos($tag){
       
       $videos = Video::with('user')->whereRaw('json_contains(tags, \'["' . $tag . '"]\')')->get();
+   
       $tags = Video::pluck('tags');
-      return view('frontend.tag_videos',compact('videos','tags'));
+      foreach($tags as $key => $tag){
+        $videotags[$key] = (explode(" ",$tag));
+
+      }
+      return view('frontend.tag_videos',compact('videos','tags','videotags'));
 
     }
 

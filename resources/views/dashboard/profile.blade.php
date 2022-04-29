@@ -230,7 +230,7 @@
                               </div>
                               <!-- video starts -->
                               <div class="video" id="video-card-{{$data->id}}" style="display: none;">
-                                 <video class="video__player" src="{{asset('storage'.$data->video_url)}}"></video>
+                                 <video class="video__player" src="{{asset('storage/public/'.$data->video_url)}}"></video>
 
                                  <!-- sidebar -->
                                  <div class="videoSidebar">

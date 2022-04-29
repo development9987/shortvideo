@@ -1,5 +1,5 @@
 @extends('layouts.dashboard.app')
-@section('content')
+
 @section('content')
 <div id="content-wrapper">
             <div class="container-fluid pb-0">
@@ -37,7 +37,7 @@
                          </div>
                          <!-- video starts -->
                          <div class="video" id="video-card-{{$video->id}}" style="display: none;">
-                            <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
+                            <video class="video__player" src="{{asset('storage/public/'.$video->video_url)}}"></video>
 
                             <!-- sidebar -->
                             <div class="videoSidebar">

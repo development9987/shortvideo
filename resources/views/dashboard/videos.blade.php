@@ -10,7 +10,7 @@
                      <div class="col-xl-3 col-sm-6 mb-3">
                         <div class="category-item mt-0 mb-0">
                            <a href="{{route('admin.show',$video->id)}}">
-                              <img class="img-fluid" src="{{asset('storage'.$video->thumbnail)}}" alt="">
+                              <img class="img-fluid" src="{{asset('storage/public/'.$video->thumbnail)}}" alt="">
                               <h6>{{$video->title}} <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></span></h6>
                               <p>{{$video->views}} views</p>
 

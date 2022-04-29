@@ -129,3 +129,15 @@
     border-radius: 0;
   }
 }
+.fancybox-content {
+  background: rgb(0 0 0 / 60%) !important;
+  display: inline-block;
+  margin: 0;
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 44px;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+}
