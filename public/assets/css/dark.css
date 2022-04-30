@@ -37,6 +37,9 @@ Version: 1.0
 a:hover, h1, h2, h3, h4, h5, h6 {
     color: #fff;
 }
+a.navbar-brand.mr-1 {
+    margin-left: 9px !important;
+}
  #wrapper {
      display: -webkit-box;
      display: -ms-flexbox;
@@ -45,6 +48,18 @@ a:hover, h1, h2, h3, h4, h5, h6 {
  #wrapper #content-wrapper {
      overflow-x: hidden;
      width: 100%;
+}
+.fancybox-content {
+    background: #000 !important;
+    display: inline-block;
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 44px;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
 }
 #wrapper #content-wrapper .container-fluid {
     padding: 30px 30px 30px 24px;

@@ -213,10 +213,10 @@ class VideoController extends Controller
   }
 
   public function usersVideos($id){
-    $videos = Video::with('user.followers')->where('user_id',$id)->get();
+
+    $videos = Video::with('user.followers','comments')->where('user_id',$id)->get();
     return view('dashboard.user.videos',compact('videos'));
-
-
+    
   }
 
 

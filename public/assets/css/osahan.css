@@ -375,6 +375,9 @@ Version: 1.0
      font-size: 12px;
      color: #777;
 }
+a.navbar-brand.mr-1 {
+    margin-left: 9px !important;
+}
 footer.sticky-footer {
     background-color: #232323;
     padding: 15px;

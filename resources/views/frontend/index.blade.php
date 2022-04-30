@@ -239,7 +239,7 @@ option {
                               <!-- video starts -->
                               <div class="video" id="video-card-{{$video->id}}" style="display: none;">
                               @if (!empty($video->video_url))
-                              <video class="video__player" src="{{asset('storage/public/'.$video->video_url)}}"></video>
+                              <video class="video__player" src="{{asset('storage/public'.$video->video_url)}}"></video>
                               @else
                               <video class="video__player" src="{{asset('assets/img/screenshot.png')}}"></video>
                               @endif
