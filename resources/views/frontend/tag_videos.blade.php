@@ -34,7 +34,7 @@
                          </div>
                          <!-- video starts -->
                          <div class="video" id="video-card-{{$video->id}}" style="display: none;">
-                            <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
+                            <video class="video__player" src="{{asset('storage/public'.$video->video_url)}}"></video>
                    
                             <!-- sidebar -->
                             <div class="videoSidebar">
@@ -84,9 +84,11 @@
                       <div class="row">
                          <div class="container" style="padding: 20px;">
                             <ul class="tags">
-                               @foreach($tags as $tag)
-                               <li><a href="{{route('tag.video',$tag)}}" class="tag">{{$tag}}</a></li>
-                               @endforeach
+                            @foreach($videotags as $key => $videotag)
+                                       @foreach ($videotag as $tag)
+                                       <li><a href="{{route('tag.video',preg_replace('/[^a-zA-Z0-9_ %\.\(\)%&-]/s', '', $tag))}}" class="tag" style="background: {{sprintf("#%06x",rand(0,16777215))}}" >#{{ preg_replace('/[^a-zA-Z0-9_ %\.\(\)%&-]/s', '', $tag) }}</a></li>
+                                       @endforeach
+                                 @endforeach
                                <!-- <li><a href="#" class="tag">#CSS</a></li>
                                <li><a href="#" class="tag" style="background: linear-gradient(135deg, #4eda92 1%,#56e0cb 100%)">#JavaScript</a></li>
                                <li><a href="#" class="tag" style="background: linear-gradient(135deg, #ff25bc 0%,#7553ff 100%);">#Videos</a></li>

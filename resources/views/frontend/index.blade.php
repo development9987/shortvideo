@@ -45,6 +45,7 @@
     border-bottom-left-radius: 20px;
     margin-right: -1px;
     padding: 8px;
+    margin-left: 10px;
 }
 
 .comment-btn {
@@ -119,6 +120,7 @@ display:block;
 .video-title-h4 {
    font-size: 18px;
    margin-bottom: 0px;
+   color: #fff;
 }
 .video-title-p {
    color: #fff
@@ -237,7 +239,7 @@ option {
                               <!-- video starts -->
                               <div class="video" id="video-card-{{$video->id}}" style="display: none;">
                               @if (!empty($video->video_url))
-                              <video class="video__player" src="{{asset('storage'.$video->video_url)}}"></video>
+                              <video class="video__player" src="{{asset('storage/public'.$video->video_url)}}"></video>
                               @else
                               <video class="video__player" src="{{asset('assets/img/screenshot.png')}}"></video>
                               @endif

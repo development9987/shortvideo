@@ -5,6 +5,67 @@
         margin: 0;
         text-align: right;
     }
+    .videoComments{
+  width: 100%;
+  height: 220px;
+  position: absolute;
+  background: #fff;
+  bottom: 0px;
+  z-index: 3;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.comment-header {
+  padding: 15px;
+  margin-left: 5px;
+}
+.comment-section {
+padding: 2px 15px 2px 15px;
+overflow-y: scroll;
+height: 65%;
+margin-left:5px;
+}
+.comment-section::-webkit-scrollbar {
+display: none;
+}
+.comment-section a {
+color: #000;
+font-weight: 600;
+text-decoration: none;
+}
+.comment p {
+font-size: 15px;
+}
+.comment-timestamp p {
+margin-top: -15px;
+font-size: 10px;
+}
+.comment-input {
+  width: 75%;
+  background: #efefef;
+  border-top: 1px solid #bfbfbf !important;
+  border-bottom: 1px solid #bfbfbf !important;
+  border-left: 1px solid #bfbfbf !important;
+  border-right: 0px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-right: -1px;
+  padding: 8px;
+  margin-left: 28px;
+}
+
+.comment-btn {
+  width: 10%;
+  background: #efefef;
+  color: #ff0000;
+  padding: 4px 4px 4px 4px;
+  border-top: 1px solid #bfbfbf !important;
+  border-bottom: 1px solid #bfbfbf !important;
+  border-right: 1px solid #bfbfbf !important;
+  border-left: 1px solid #bfbfbf !important;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
 </style>
 @endsection
 @section('content')
@@ -98,7 +159,7 @@
                            <div class="mr-5"><b>{{$videos}}</b>Videos</div>
                         </div>
                         
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',$profile->profile->user_id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.videos',!empty($profile->profile->user_id) ?$profile->profile->user_id : '')}}">
 
                         <span class="float-left">View Details</span>
                         <span class="float-right">
@@ -115,7 +176,7 @@
                            </div>
                            <div class="mr-5"><b>{{$followers}}</b> Followers</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',$profile->profile->user_id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.follower',!empty($profile->profile->user_id) ?$profile->profile->user_id : '')}}">
 
                         <span class="float-left">View Details</span>
                         <span class="float-right">
@@ -133,7 +194,7 @@
                            <div class="mr-5"><b>{{$following}}</b> Followings</div>
                         </div>
                         
-                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',$profile->profile->user_id)}}">
+                        <a class="card-footer text-white clearfix small z-1" href="{{route('users.following',!empty($profile->profile->user_id) ?$profile->profile->user_id : '')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                         <i class="fas fa-angle-right"></i>
@@ -234,7 +295,7 @@
                               </div>
                               <!-- video starts -->
                               <div class="video" id="video-card-{{$data->id}}" style="display: none;">
-                                 <video class="video__player" src="{{asset('storage'.$data->video_url)}}"></video>
+                                 <video class="video__player" src="{{asset('storage/public'.$data->video_url)}}"></video>
 
                                  <!-- sidebar -->
                                  <div class="videoSidebar">
@@ -248,7 +309,7 @@
                                  </div>
 
                                  <div class="videoSidebar__button">
-                                    <span class="material-icons"> message </span>
+                                    <span  data-id ="{{$data->id}}" class="videcomment-btn material-icons"> message </span>
                                     <p>{{App\Models\Comment::countComment($data->id)}}</p>
                                  </div>
 
@@ -259,16 +320,38 @@
                                  <span class="float-right close-comment"><i class="fas fa-times"></i></span>
                               </div>
                               <div class="comment-section">
-                                 <div class="usercomments">
-                                 <div class="usercomments">
+                              <div class="usercomments">
                                  <div class="row">
 
                                  <input type="text" class="comment-input" id="comment{{$data->id}}" >
-                                    <button class="btn btn-primary comment comment-btn" data-id="{{$data->id}}" type="button"><i class="far fa-comment-dots"></i></button>
+
+                                 <button class="btn btn-primary comment comment-btn" data-id="{{$data->id}}" type="button"><i class="far fa-comment-dots"></i></button>
+
+
                                  </div>
 
                                  </div>
+                                   <div class="commentarea"></div>
+
+                                @forelse ($data->comments as $comment)
+                                <div class="usercomments">
+                                    <div class="video-title">
+                                       <a href="#" class="video-user">
+                                          <!-- <img alt="Avatar" src="img/user.png"> -->
+                                          {{$comment->user->name}} </a>
+                                    </div>
+                                    <div class="comment">
+                                       <p>{{$comment->body}}</p>
+                                    </div>
+                                    <div class="comment-timestamp">
+                                       <p>{{$comment->created_at}}</p>
+                                    </div>
                                  </div>
+                                @empty
+                                   no comments
+                                @endforelse
+
+                              
 
                               </div>
                            </div>
@@ -361,16 +444,79 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+$(".likeBtn").on('click',function(){
 
+var id = $(this).data('id');
+var video_id = $(this).data('video');
+$.ajax({
+            type:'POST',
+            url:'/like/'+id,
+            data:{_token: "{{ csrf_token() }}",
+            'video_id' : video_id
+            },
+            success: function( msg ) {
+
+if(msg == "Liked"){
+  $(".likeBtn").text('favorite')
+
+}else if(msg == "unLiked"){
+  $(".likeBtn").text('favorite_border')
+}
+
+
+            },
+            error(err){
+
+              if(err.status === 401 ){
+                 window.location.replace(base_url+"/login");
+              }
+
+            }
+        });
+
+})
+
+
+ })
 
 $(".videcomment-btn").click(function(){
 
 var id = $(this).data('id');
-$("#videoComments"+id).toggleClass('d-none');
+$("#videoComments"+ id).toggleClass('d-none');
 });
 $(".close-comment").click(function(){
 $(".videoComments").addClass('d-none');
 });
+
+$('.comment').on('click',function(){
+   var id = $(this).data('id');
+   var comment = $("#comment"+id).val();
+
+
+   $.ajax({
+                type:'POST',
+                url:'/post/comment',
+                data:{_token: "{{ csrf_token() }}",
+                'video_id' : id,
+                'comment' : comment
+
+                },
+                success: function( msg ) {
+                       console.log(msg.body)
+                   var result = '<div class="usercomments"><div class="video-title"><a href="#" class="video-user"><img alt="Avatar" src="g">Osahan </a></div><div class="comment"><p>'+msg.body+'</p></div><div class="comment-timestamp"><p>04-21</p></div></div>'
+                   $(".commentarea").append(result)
+                },
+                error(err){
+
+if(err.status === 401 ){
+   window.location.replace(base_url+"/login");
+}
+
+}
+            });
+
+})
+
 
 $("#followBtn").on('click',function(){
     var id = $(this).data('id');
@@ -388,6 +534,6 @@ $("#followBtn").on('click',function(){
 })
 
 
-     })
+
 </script>
 @endsection

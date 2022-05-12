@@ -37,6 +37,9 @@ Version: 1.0
 a:hover, h1, h2, h3, h4, h5, h6 {
     color: #fff;
 }
+a.navbar-brand.mr-1 {
+    margin-left: 9px !important;
+}
  #wrapper {
      display: -webkit-box;
      display: -ms-flexbox;
@@ -45,6 +48,18 @@ a:hover, h1, h2, h3, h4, h5, h6 {
  #wrapper #content-wrapper {
      overflow-x: hidden;
      width: 100%;
+}
+.fancybox-content {
+    background: #000 !important;
+    display: inline-block;
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 44px;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
 }
 #wrapper #content-wrapper .container-fluid {
     padding: 30px 30px 30px 24px;
@@ -387,10 +402,13 @@ a:hover, h1, h2, h3, h4, h5, h6 {
      font-size: 12px;
      color: #777;
 }
+
 footer.sticky-footer {
     background-color: #e9ecef;
     padding: 15px;
-    margin-left: 45px;
+    margin-left: -32px;
+    margin-right: -18px;
+    margin-top: 172px;
 }
  footer.sticky-footer .copyright {
      line-height: 1;
@@ -813,7 +831,7 @@ a:hover, h1, h2, h3, h4, h5, h6 {
     color: #000;
 }
 .video-title a {
-    color: #fff !important;
+    color: #0e0d0d !important;
     font-weight: 600;
     text-decoration: none;
 }
@@ -1928,6 +1946,61 @@ option {
          margin-right: 15px !important;
     }
 }
+.comment-header {
+    padding: 15px;
+  }
+  .comment-section {
+    padding: 2px 15px 2px 15px;
+    overflow-y: scroll;
+    height: 65%;
+  }
+  .comment-section::-webkit-scrollbar {
+    display: none;
+  }
+  .comment-section a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .comment p {
+    font-size: 15px;
+  }
+  .comment-timestamp p {
+    margin-top: -15px;
+    font-size: 10px;
+  }
+  .comment-input {
+      width: 75%;
+      background: #efefef;
+      border-top: 1px solid #bfbfbf !important;
+      border-bottom: 1px solid #bfbfbf !important;
+      border-left: 1px solid #bfbfbf !important;
+      border-right: 0px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      margin-right: -1px;
+      padding: 8px;
+      margin-left: 10px;
+  }
+  .video-user img {
+    border-radius: 50px;
+    height: 30px;
+    margin: -9px 2px -6px 0;
+    width: 30px;
+}
+  
+  .comment-btn {
+      width: 10%;
+      background: #efefef;
+      color: #ff0000;
+      padding: 4px 4px 4px 4px;
+      border-top: 1px solid #bfbfbf !important;
+      border-bottom: 1px solid #bfbfbf !important;
+      border-right: 1px solid #bfbfbf !important;
+      border-left: 1px solid #bfbfbf !important;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+  }
 /* Extra large devices (large desktops, 1200px and up) */
  @media (min-width: 1200px) {
 
